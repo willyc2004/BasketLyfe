@@ -332,7 +332,9 @@ fun EmailTextField(
 
         if (email.isNotEmpty() && !isValidEmail) {
             Text(
-                modifier = Modifier.semantics { contentDescription = "InvalidEmailMessage" }.padding(start = 10.dp),
+                modifier = Modifier
+                    .semantics { contentDescription = "InvalidEmailMessage" }
+                    .padding(start = 10.dp),
                 text = "Invalid email format",
                 color = Color.Red,
                 fontSize = 12.sp,
@@ -440,7 +442,9 @@ fun PasswordTextField(
                 onHasStrongPassword(false)
             }
             Text(
-                modifier = Modifier.semantics { contentDescription = "StrengthPasswordMessage" }.padding(start = 10.dp),
+                modifier = Modifier
+                    .semantics { contentDescription = "StrengthPasswordMessage" }
+                    .padding(start = 10.dp),
                 text = buildAnnotatedString {
                     withStyle(
                         style = SpanStyle(
@@ -485,6 +489,8 @@ fun ConfirmPasswordTextField(
     val showPassword = remember { mutableStateOf(false) }
     val matchError = remember { mutableStateOf(false) }
 
+    val borderColor = if (matchError.value) Color(0xFFAF2C22) else Color.Black
+
     Column(
         modifier = modifier
             .fillMaxWidth(),
@@ -511,7 +517,6 @@ fun ConfirmPasswordTextField(
                         modifier = Modifier.padding(start = 10.dp)
                     )
                 }
-
             },
             keyboardOptions = KeyboardOptions.Default.copy(
                 autoCorrect = true,
@@ -546,10 +551,10 @@ fun ConfirmPasswordTextField(
                 }
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color(0xFFAF2C22),
-                unfocusedBorderColor = Color(0xFFAF2C22),
+                focusedBorderColor = borderColor,
+                unfocusedBorderColor = borderColor,
                 textColor = Color.Black,
-                cursorColor = Color(0xFFAF2C22),
+                cursorColor = Color.Black,
             )
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -560,7 +565,9 @@ fun ConfirmPasswordTextField(
                 fontSize = 12.sp,
                 fontFamily = Prompt,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.semantics { contentDescription = "ConfirmPasswordMessage" }.padding(start = 10.dp),
+                modifier = Modifier
+                    .semantics { contentDescription = "ConfirmPasswordMessage" }
+                    .padding(start = 10.dp),
             )
             matchError.value = true
         } else {

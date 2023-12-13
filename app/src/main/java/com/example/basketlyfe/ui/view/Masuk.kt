@@ -58,7 +58,6 @@ import com.example.basketlyfe.ui.theme.Prompt
 fun Masuk(navController: NavController) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
-    var hasStrongPassword by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -129,11 +128,6 @@ fun Masuk(navController: NavController) {
             text = password,
             onTextChanged = { newPassword ->
                 password = newPassword
-            },
-            validateStrengthPassword = true,
-            hasError = hasStrongPassword.not(),
-            onHasStrongPassword = { isStrong ->
-                hasStrongPassword = isStrong
             },
             modifier = Modifier
                 .fillMaxWidth()
