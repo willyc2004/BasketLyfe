@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BasketLyfe</string>
+    <string name="warning_password_level">Password Security : </string>
+    <string name="warning_password_level_strong">Password is Strong</string>
+    <string name="warning_password_level_weak">Password is weak, Password should consist of Uppercase, Lowercase, Digit, and Symbol</string>
+    <string name="error_password_no_match">Password do not match</string>
 </resources>
