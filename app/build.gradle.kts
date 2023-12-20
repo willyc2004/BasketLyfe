@@ -52,6 +52,23 @@ android {
 
 dependencies {
 
+    val sheetsVersion = "1.2.0"
+
+    implementation("com.maxkeppeler.sheets-compose-dialogs:core:$sheetsVersion")
+
+    // OPTION
+    implementation ("com.maxkeppeler.sheets-compose-dialogs:option:$sheetsVersion")
+
+    // DATE TIME
+    implementation("com.maxkeppeler.sheets-compose-dialogs:date-time:$sheetsVersion")
+
+    // CALENDAR
+    implementation("com.maxkeppeler.sheets-compose-dialogs:calendar:$sheetsVersion")
+
+    // CLOCK
+    implementation("com.maxkeppeler.sheets-compose-dialogs:clock:$sheetsVersion")
+
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.0")
