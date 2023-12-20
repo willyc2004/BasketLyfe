@@ -314,7 +314,6 @@ fun EmailTextField(
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.Black,
                 unfocusedBorderColor = Color.Black,
-                textColor = Color.Black,
                 cursorColor = Color.Black,
             ),
             trailingIcon = {
@@ -429,7 +428,6 @@ fun PasswordTextField(
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.Black,
                 unfocusedBorderColor = Color.Black,
-                textColor = Color.Black,
                 cursorColor = Color.Black,
             )
         )
@@ -553,7 +551,6 @@ fun ConfirmPasswordTextField(
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = borderColor,
                 unfocusedBorderColor = borderColor,
-                textColor = Color.Black,
                 cursorColor = Color.Black,
             )
         )
