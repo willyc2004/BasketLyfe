@@ -26,11 +26,9 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.basketlyfe.R
 import com.example.basketlyfe.components.ConfirmPasswordTextField
 import com.example.basketlyfe.components.EmailTextField
@@ -41,9 +39,10 @@ import com.example.basketlyfe.components.TextExtraBold
 import com.example.basketlyfe.components.TextNormal
 import com.example.basketlyfe.ui.ListScreen
 import com.example.basketlyfe.ui.theme.Prompt
+import com.example.basketlyfe.viewmodel.DaftarViewModel
 
 @Composable
-fun Daftar(navController: NavController) {
+fun Daftar(navController: NavController, viewModel: DaftarViewModel) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var konfirmasi by remember { mutableStateOf("") }
@@ -78,8 +77,8 @@ fun Daftar(navController: NavController) {
             )
 
             EmailTextField(
-                email = email,
-                onEmailChanged = { newEmail -> email = newEmail },
+                email = viewModel.email,
+                onEmailChanged = viewModel::onEmailChanged,
                 modifier = Modifier
                     .padding(bottom = 8.dp)
             )
@@ -93,14 +92,12 @@ fun Daftar(navController: NavController) {
             )
 
             PasswordTextField(
-                text = password,
-                onTextChanged = { newPassword ->
-                    password = newPassword
-                },
+                text = viewModel.password,
+                onTextChanged = viewModel::onPasswordChanged,
                 validateStrengthPassword = true,
-                hasError = hasStrongPassword.not(),
+//                hasError = hasStrongPassword.not(),
                 onHasStrongPassword = { isStrong ->
-                    hasStrongPassword = isStrong
+                    viewModel.updateHasStrongPassword(isStrong)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -118,11 +115,9 @@ fun Daftar(navController: NavController) {
             )
 
             ConfirmPasswordTextField(
-                text = konfirmasi,
-                confirmText = password,
-                onTextChanged = { newPassword ->
-                    konfirmasi = newPassword
-                },
+                text = viewModel.konfirmasi,
+                confirmText = viewModel.password,
+                onTextChanged = viewModel::onKonfirmasiChanged,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 10.dp),
@@ -193,9 +188,9 @@ fun Daftar(navController: NavController) {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun DaftarPreview() {
-    val navController = rememberNavController()
-    Daftar(navController = navController)
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun DaftarPreview() {
+//    val navController = rememberNavController()
+//    Daftar(navController = navController)
+//}

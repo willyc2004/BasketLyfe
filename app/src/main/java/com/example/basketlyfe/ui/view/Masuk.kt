@@ -11,10 +11,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,11 +33,12 @@ import com.example.basketlyfe.components.TextExtraBold
 import com.example.basketlyfe.components.TextNormal
 import com.example.basketlyfe.ui.ListScreen
 import com.example.basketlyfe.ui.theme.Prompt
+import com.example.basketlyfe.viewmodel.MasukViewModel
 
 @Composable
-fun Masuk(navController: NavController) {
-    var email by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
+fun Masuk(navController: NavController, viewModel: MasukViewModel) {
+//    var email by rememberSaveable { mutableStateOf("") }
+//    var password by rememberSaveable { mutableStateOf("") }
 
     Surface(
         color = Color.White,
@@ -71,8 +68,8 @@ fun Masuk(navController: NavController) {
             )
 
             EmailTextField(
-                email = email,
-                onEmailChanged = { newEmail -> email = newEmail },
+                email = viewModel.email,
+                onEmailChanged = viewModel::onEmailChanged,
                 modifier = Modifier
                     .padding(bottom = 8.dp)
             )
@@ -86,10 +83,8 @@ fun Masuk(navController: NavController) {
             )
 
             PasswordTextField(
-                text = password,
-                onTextChanged = { newPassword ->
-                    password = newPassword
-                },
+                text = viewModel.password,
+                onTextChanged = viewModel::onPasswordChanged,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 10.dp),
@@ -115,7 +110,7 @@ fun Masuk(navController: NavController) {
 
             Button(
                 onClick = {
-
+                    viewModel.onLoginClicked()
                 },
                 colors = ButtonDefaults.buttonColors(Color(0xFFED6C30)),
                 modifier = Modifier

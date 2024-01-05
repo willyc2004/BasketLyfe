@@ -175,7 +175,7 @@ fun EmailTextField(
                 modifier = Modifier
                     .semantics { contentDescription = "InvalidEmailMessage" }
                     .padding(start = 10.dp),
-                text = "Invalid email format",
+                text = "Format Email tidak Valid",
                 color = Color.Red,
                 fontSize = 12.sp,
                 fontFamily = Prompt
@@ -201,6 +201,14 @@ fun PasswordTextField(
 ) {
     val focusManager = LocalFocusManager.current
     val showPassword = remember { mutableStateOf(false) }
+
+    val strengthPasswordType = strengthChecker(text)
+
+    val borderColor = if (strengthPasswordType == StrengthPasswordTypes.STRONG) {
+        Color.Black
+    } else {
+        Color(0xFFAF2C22)
+    }
 
     Column(
         modifier = modifier
@@ -265,8 +273,8 @@ fun PasswordTextField(
             },
             colors = OutlinedTextFieldDefaults.colors(
                 cursorColor = Color.Black,
-                focusedBorderColor = Color.Black,
-                unfocusedBorderColor = Color.Black,
+                focusedBorderColor = borderColor,
+                unfocusedBorderColor = borderColor,
             )
         )
         Spacer(modifier = Modifier.height(8.dp))
