@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavHostController
 import com.example.basketlyfe.Model.CompetitionListModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -34,13 +36,15 @@ import kotlinx.coroutines.flow.stateIn
 @Composable
 fun CompetitionCard(
     competition: CompetitionListModel,
-    onClick: ()-> Unit
-){
-    Card (
+    navController: NavHostController
+) {
+    Card(
         modifier = Modifier
-            .padding(8.dp)
+            .padding(top = 18.dp, bottom = 18.dp)
             .fillMaxWidth()
-            .clickable(onClick = onClick),
+            .clickable {
+                navController.navigate("detail/${competition.id}")
+            },
         shape = MaterialTheme.shapes.medium
     ) {
         Column {
@@ -62,7 +66,9 @@ fun CompetitionCard(
                     .fillMaxWidth()
             )
             Row {
-                Icon(Icons.Rounded.LocationOn, contentDescription = "Address", modifier = Modifier.padding(2.dp))
+                Icon(Icons.Rounded.LocationOn, contentDescription = "Address",
+                    modifier = Modifier
+                        .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
                 Text(
                     text = competition.address,
                     style = TextStyle(
@@ -70,7 +76,7 @@ fun CompetitionCard(
                         fontWeight = FontWeight.Bold
                     ),
                     modifier = Modifier
-                        .padding(2.dp)
+                        .padding(top = 1.dp, start = 5.dp, bottom = 2.dp)
                         .fillMaxWidth()
                 )
             }

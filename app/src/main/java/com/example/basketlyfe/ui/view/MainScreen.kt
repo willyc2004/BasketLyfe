@@ -12,6 +12,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
@@ -25,7 +27,7 @@ import com.example.basketlyfe.ViewModel.BottomNavGraph
 fun MainScreen(){
     val navController = rememberNavController()
     Scaffold (
-        bottomBar = { BottomBar(navController = navController)}
+        bottomBar = { BottomBar(navController = navController)} ,
     ){
         BottomNavGraph(navController = navController)
     }
@@ -34,13 +36,16 @@ fun MainScreen(){
 fun BottomBar(navController: NavHostController){
     val screens = listOf(
         BottomBarScreen.Home,
-        BottomBarScreen.Profile,
+        BottomBarScreen.Schedule,
         BottomBarScreen.CompetitionL,
+        BottomBarScreen.Profile,
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    BottomNavigation{
+    BottomNavigation(
+        backgroundColor = Color(0xFF6D41A0)
+    ){
         screens.forEach{screen->
             AddItem(
                 screen = screen,
@@ -58,11 +63,25 @@ fun RowScope.AddItem(
 ){
     BottomNavigationItem(
         label = {
-            Text(text = screen.title)
+            Text(
+                fontSize = 12.sp,
+                text = screen.title,
+                color = if (currentDestination?.hierarchy?.any { it.route == screen.route } == true) {
+                    Color.White
+                } else {
+                    Color(0xFFD0BCFF)
+                }
+            )
         },
         icon ={
-            Icon(imageVector = screen.icon,
-                contentDescription = "Navigation Icon"
+            Icon(
+                imageVector = screen.icon,
+                contentDescription = "Navigation Icon",
+                tint = if (currentDestination?.hierarchy?.any { it.route == screen.route } == true) {
+                    Color.White
+                } else {
+                    Color(0xFFD0BCFF)
+                }
             )
         },
         selected = currentDestination?.hierarchy?.any {

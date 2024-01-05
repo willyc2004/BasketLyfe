@@ -1,9 +1,11 @@
 package com.example.basketlyfe.ui.view
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class BottomBarScreen (
@@ -27,4 +29,11 @@ sealed class BottomBarScreen (
         title = "Competition",
         icon = Icons.Default.List
     )
+    object Schedule : BottomBarScreen(
+        route = "schedule",
+        title = "Schedule",
+        icon = Icons.Default.DateRange
+    )
 }
+val String.color
+    get()= Color(android.graphics.Color.parseColor(this))
