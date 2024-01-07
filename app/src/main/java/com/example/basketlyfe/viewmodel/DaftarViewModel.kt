@@ -7,9 +7,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
+import com.example.basketlyfe.ui.ListScreen
 import kotlinx.coroutines.launch
 
-class DaftarViewModel : ViewModel() {
+class DaftarViewModel (private val navController: NavController): ViewModel(){
 
     var email by mutableStateOf("")
     var password by mutableStateOf("")
@@ -33,6 +35,11 @@ class DaftarViewModel : ViewModel() {
         konfirmasi = newKonfirmasi
     }
 
+    fun onMasukClicked() {
+        // Handle any logic related to the Daftar button click
+        navController.navigate(ListScreen.Daftar.name)
+    }
+
     // Example function for handling registration
     fun registerUser() {
         // Implement your registration logic here
@@ -48,11 +55,13 @@ class DaftarViewModel : ViewModel() {
                 // UserRepository.registerUser(email, password)
 
                 // TODO: Implement your registration logic here
+                navController.navigate(ListScreen.Masuk.name)
 
                 // After registration, you can perform additional actions if needed
             }
         } else {
             // Handle validation errors or show a message to the user
+            navController.navigate(ListScreen.Daftar.name)
         }
     }
 

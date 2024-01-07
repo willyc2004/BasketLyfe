@@ -29,6 +29,10 @@ class MasukViewModel (private val navController: NavController): ViewModel() {
             navController.navigate(ListScreen.MainScreen.name)
         }
     }
+    fun onDaftarClicked() {
+        // Handle any logic related to the Daftar button click
+        navController.navigate(ListScreen.Daftar.name)
+    }
 
     //contoh logout pak evan
 

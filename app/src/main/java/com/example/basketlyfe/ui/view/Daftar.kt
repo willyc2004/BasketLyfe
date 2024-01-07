@@ -11,11 +11,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,7 +23,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.basketlyfe.R
 import com.example.basketlyfe.components.ConfirmPasswordTextField
 import com.example.basketlyfe.components.EmailTextField
@@ -37,16 +31,11 @@ import com.example.basketlyfe.components.PasswordTextField
 import com.example.basketlyfe.components.TextBold
 import com.example.basketlyfe.components.TextExtraBold
 import com.example.basketlyfe.components.TextNormal
-import com.example.basketlyfe.ui.ListScreen
 import com.example.basketlyfe.ui.theme.Prompt
 import com.example.basketlyfe.viewmodel.DaftarViewModel
 
 @Composable
-fun Daftar(navController: NavController, viewModel: DaftarViewModel) {
-    var email by rememberSaveable { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var konfirmasi by remember { mutableStateOf("") }
-    var hasStrongPassword by remember { mutableStateOf(false) }
+fun Daftar(viewModel: DaftarViewModel) {
 
     Surface(
         color = Color.White,
@@ -141,13 +130,13 @@ fun Daftar(navController: NavController, viewModel: DaftarViewModel) {
                     modifier = Modifier
                         .padding(start = 5.dp)
                         .padding(top = 4.dp)
-                        .clickable { navController.navigate(ListScreen.Masuk.name) },
+                        .clickable { viewModel.onMasukClicked() },
                 )
             }
 
             Button(
                 onClick = {
-
+                    viewModel.registerUser()
                 },
                 colors = ButtonDefaults.buttonColors(Color(0xFFED6C30)),
                 modifier = Modifier

@@ -23,7 +23,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.basketlyfe.R
 import com.example.basketlyfe.components.EmailTextField
 import com.example.basketlyfe.components.ImageSmall
@@ -31,12 +30,11 @@ import com.example.basketlyfe.components.PasswordTextField
 import com.example.basketlyfe.components.TextBold
 import com.example.basketlyfe.components.TextExtraBold
 import com.example.basketlyfe.components.TextNormal
-import com.example.basketlyfe.ui.ListScreen
 import com.example.basketlyfe.ui.theme.Prompt
 import com.example.basketlyfe.viewmodel.MasukViewModel
 
 @Composable
-fun Masuk(navController: NavController, viewModel: MasukViewModel) {
+fun Masuk(viewModel: MasukViewModel) {
 //    var email by rememberSaveable { mutableStateOf("") }
 //    var password by rememberSaveable { mutableStateOf("") }
 
@@ -105,7 +103,8 @@ fun Masuk(navController: NavController, viewModel: MasukViewModel) {
                     modifier = Modifier
                         .padding(start = 5.dp)
                         .padding(top = 4.dp)
-                        .clickable { navController.navigate(ListScreen.Daftar.name) })
+                        .clickable { viewModel.onDaftarClicked() }
+                )
             }
 
             Button(
@@ -147,10 +146,3 @@ fun Masuk(navController: NavController, viewModel: MasukViewModel) {
         }
     }
 }
-
-
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun MasukPreview() {
-//    Masuk()
-//}

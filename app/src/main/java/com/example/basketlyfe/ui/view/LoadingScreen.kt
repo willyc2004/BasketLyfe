@@ -20,25 +20,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.basketlyfe.R
-import com.example.basketlyfe.ui.ListScreen
 import com.example.basketlyfe.ui.theme.Prompt
-import kotlinx.coroutines.delay
+import com.example.basketlyfe.viewmodel.LoadingScreenViewModel
 import kotlinx.coroutines.launch
 
+// LoadingScreen.kt
+
 @Composable
-fun LoadingScreen(navController: NavController) {
+fun LoadingScreen(viewModel: LoadingScreenViewModel) {
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         // Use a coroutine scope to launch a background task
         scope.launch {
-            // Simulate a 3-second delay
-            delay(3000)
+            // Simulate loading
+            viewModel.simulateLoading()
 
-            // Navigate to the Masuk screen after the delay
-            navController.navigate(ListScreen.Masuk.name)
+            // Navigate to the Masuk screen after the loading is complete
+            viewModel.onLoadingDone()
         }
     }
 
@@ -71,8 +71,6 @@ fun LoadingScreen(navController: NavController) {
         )
     }
 }
-
-
 
 
 //@Preview(showBackground = true, showSystemUi = true)

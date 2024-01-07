@@ -16,6 +16,7 @@ import com.example.basketlyfe.ui.view.LoadingScreen
 import com.example.basketlyfe.ui.view.MainScreen
 import com.example.basketlyfe.ui.view.Masuk
 import com.example.basketlyfe.viewmodel.DaftarViewModel
+import com.example.basketlyfe.viewmodel.LoadingScreenViewModel
 import com.example.basketlyfe.viewmodel.MasukViewModel
 
 enum class ListScreen {
@@ -39,13 +40,13 @@ fun BasketLyfeRoute() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(ListScreen.LoadingScreen.name) {
-                LoadingScreen(navController = navController)
+                LoadingScreen(viewModel = LoadingScreenViewModel(navController = navController))
             }
             composable(ListScreen.Masuk.name) {
-                Masuk(navController = navController, viewModel = MasukViewModel(navController = navController))
+                Masuk(viewModel = MasukViewModel(navController = navController))
             }
             composable(ListScreen.Daftar.name) {
-                Daftar(navController = navController, viewModel = DaftarViewModel())
+                Daftar(viewModel = DaftarViewModel(navController = navController))
             }
             composable(ListScreen.MainScreen.name) {
                 MainScreen()
