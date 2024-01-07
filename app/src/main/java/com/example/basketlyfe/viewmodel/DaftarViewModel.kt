@@ -37,7 +37,7 @@ class DaftarViewModel (private val navController: NavController): ViewModel(){
 
     fun onMasukClicked() {
         // Handle any logic related to the Daftar button click
-        navController.navigate(ListScreen.Daftar.name)
+        navController.navigate(ListScreen.Masuk.name)
     }
 
     // Example function for handling registration
