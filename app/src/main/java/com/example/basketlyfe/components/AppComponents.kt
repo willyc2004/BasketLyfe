@@ -406,7 +406,6 @@ fun ConfirmPasswordTextField(
                 color = Color.Red,
                 fontSize = 12.sp,
                 fontFamily = Prompt,
-                fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .semantics { contentDescription = "ConfirmPasswordMessage" }
                     .padding(start = 10.dp),
