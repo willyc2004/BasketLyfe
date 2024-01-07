@@ -1,4 +1,4 @@
-package com.example.basketlyfe.ViewModel
+package com.example.basketlyfe.viewmodel
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

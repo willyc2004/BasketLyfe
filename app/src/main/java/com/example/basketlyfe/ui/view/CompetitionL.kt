@@ -1,6 +1,5 @@
 package com.example.basketlyfe.ui.view
 
-import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.example.basketlyfe.Model.CompetitionData
-import com.example.basketlyfe.ViewModel.CompetitionCard
+import com.example.basketlyfe.viewmodel.CompetitionCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

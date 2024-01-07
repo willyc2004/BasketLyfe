@@ -1,9 +1,7 @@
 package com.example.basketlyfe.ui.view
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -32,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.example.basketlyfe.Model.LapanganData
-import com.example.basketlyfe.ViewModel.LapanganCard
+import com.example.basketlyfe.viewmodel.LapanganCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

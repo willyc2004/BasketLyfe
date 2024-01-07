@@ -5,9 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
+import com.example.basketlyfe.ui.ListScreen
 import kotlinx.coroutines.launch
 
-class MasukViewModel : ViewModel() {
+class MasukViewModel (private val navController: NavController): ViewModel() {
 
     var email by mutableStateOf("")
     var password by mutableStateOf("")
@@ -24,7 +26,7 @@ class MasukViewModel : ViewModel() {
         // Implement your login logic here
         // For example, you can use viewModelScope.launch for background tasks
         viewModelScope.launch {
-            // Perform login operation
+            navController.navigate(ListScreen.MainScreen.name)
         }
     }
 
