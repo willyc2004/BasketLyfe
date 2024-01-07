@@ -9,7 +9,10 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -55,7 +58,7 @@ fun CompetitionLScreen(){
     ){
         item {
             Text(
-                text = "Competition List",
+                text = "List Kompetisi",
                 style = TextStyle(
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
@@ -78,7 +81,15 @@ fun CompetitionLScreen(){
                 onValueChange = {
                     searchQuery = it
                 },
-                label = { Text("Search") },
+                label = {
+                    Icon(
+                        Icons.Rounded.Search, contentDescription = "Search",
+                        modifier = Modifier
+                            .padding(PaddingValues(start = 5.dp, bottom = 2.dp)))
+                    Text("Cari Kompetisi",
+                        modifier = Modifier.
+                        padding(start = 30.dp)
+                    ) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 16.dp)
