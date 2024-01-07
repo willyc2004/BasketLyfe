@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BasketLyfe</string>
-    <string name="warning_password_level">Password Security : </string>
-    <string name="warning_password_level_strong">Password is Strong</string>
-    <string name="warning_password_level_weak">Password is weak, Password should consist of Uppercase, Lowercase, Digit, and Symbol</string>
-    <string name="error_password_no_match">Password do not match</string>
+    <string name="warning_password_level">Keamanan Password : </string>
+    <string name="warning_password_level_strong">Password Kuat</string>
+    <string name="warning_password_level_weak">Kata sandi lemah, Kata sandi harus terdiri dari Huruf Besar, Huruf Kecil, Angka, dan Simbol</string>
+    <string name="error_password_no_match">Kata sandi tidak cocok</string>
 </resources>

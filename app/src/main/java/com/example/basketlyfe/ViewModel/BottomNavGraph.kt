@@ -1,4 +1,4 @@
-package com.example.basketlyfe.ViewModel
+package com.example.basketlyfe.viewmodel
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
