@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.basketlyfe.data.DataStoreManager
+import com.example.basketlyfe.ui.view.CreateSchedule
 import com.example.basketlyfe.ui.view.Daftar
 import com.example.basketlyfe.ui.view.FormSchedule
 import com.example.basketlyfe.ui.view.LoadingScreen
@@ -29,7 +30,7 @@ enum class ListScreen {
     LoadingScreen,
     MainScreen,
     FormSchedule,
-    DetailCompetition
+    CreateSchedule
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -59,6 +60,9 @@ fun BasketLyfeRoute() {
             }
             composable(ListScreen.FormSchedule.name) {
                 FormSchedule(viewModel = FormScheduleViewModel(navController = navController))
+            }
+            composable(ListScreen.CreateSchedule.name) {
+                CreateSchedule(navController = navController)
             }
         }
     }

@@ -8,7 +8,7 @@ import com.example.basketlyfe.ui.view.BottomBarScreen
 import com.example.basketlyfe.ui.view.CompetitionLScreen
 import com.example.basketlyfe.ui.view.HomeScreen
 import com.example.basketlyfe.ui.view.ProfileScreen
-import com.example.basketlyfe.ui.view.ScheduleScreen
+import com.example.basketlyfe.ui.view.ScheduleListScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController){
@@ -26,7 +26,7 @@ fun BottomNavGraph(navController: NavHostController){
             CompetitionLScreen()
         }
         composable(route=BottomBarScreen.Schedule.route){
-            ScheduleScreen()
+            ScheduleListScreen()
         }
     }
 }

@@ -59,7 +59,7 @@ fun ScheduleListScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White)
-                .padding(16.dp),
+                .padding(0.dp),
         ) {
             Column(
                 modifier = Modifier
@@ -76,7 +76,7 @@ fun ScheduleListScreen() {
                     item {
 //                        Text(
 //                            text = "List Kompetisi",
-//                            style = TextStyle(
+//                            style = TextStyle(f
 //                                fontSize = 30.sp,
 //                                fontWeight = FontWeight.Bold,
 //                                letterSpacing = 0.15.sp,

@@ -34,6 +34,7 @@ import com.example.basketlyfe.components.Reminder
 import com.example.basketlyfe.components.Schedule
 import com.example.basketlyfe.components.TextBoldMod
 import com.example.basketlyfe.components.TextNormal
+import com.example.basketlyfe.ui.ListScreen
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -106,7 +107,7 @@ fun CreateSchedule(navController: NavController) {
                 end = "14.00"
             )
 
-            FAB(onClick = { /*TODO*/ }, size = 60)
+            FAB(onClick = { navController.navigate(ListScreen.FormSchedule.name)}, size = 60)
         }
     }
 }

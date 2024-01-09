@@ -1,18 +1,20 @@
 package com.example.basketlyfe.ui.view
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,6 +40,7 @@ import com.example.basketlyfe.components.ImageSmall
 import com.example.basketlyfe.components.PasswordTextField
 import com.example.basketlyfe.components.TextBold
 import com.example.basketlyfe.components.TextExtraBold
+import com.example.basketlyfe.components.TextField
 import com.example.basketlyfe.components.TextNormal
 import com.example.basketlyfe.data.DataStoreManager
 import com.example.basketlyfe.ui.theme.Prompt
@@ -54,12 +57,15 @@ fun Daftar(
         Surface(
             color = Color.White,
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxSize().background(Color.White)
                 .padding(24.dp),
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .verticalScroll(
+                        rememberScrollState()
+                    ),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
@@ -79,11 +85,17 @@ fun Daftar(
                         .padding(top = 4.dp, bottom = 8.dp),
                 )
 
+//                TextField(
+//                    value = viewModel.name,
+//                    onValueChange = viewModel::onNameChanged,
+//                    modifier = Modifier
+//                        .padding(bottom = 8.dp)
+//                )
+
                 TextField(
                     value = viewModel.name,
-                    onValueChange = viewModel::onNameChanged,
-                    modifier = Modifier
-                        .padding(bottom = 8.dp)
+                    placeHolder = "Name",
+                    onValueChange = viewModel::onNameChanged
                 )
 
                 TextBold(
@@ -91,7 +103,7 @@ fun Daftar(
                     modifier = Modifier
                         .align(Alignment.Start)
                         .padding(start = 10.dp)
-                        .padding(top = 4.dp, bottom = 8.dp),
+                        .padding(top = 8.dp, bottom = 8.dp),
                 )
 
                 EmailTextField(
@@ -212,6 +224,7 @@ fun Daftar(
         }
     }
 }
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun DaftarPreview() {

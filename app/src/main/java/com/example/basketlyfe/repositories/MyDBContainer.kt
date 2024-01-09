@@ -10,7 +10,7 @@ class MyDBContainer() {
     companion object{
         var EMAIL = ""
         var ACCESS_TOKEN = ""
-        val Url = "https://0d34-182-1-96-32.ngrok-free.app"
+        val Url = "https://6180-182-1-96-32.ngrok-free.app"
     }
 
     private val BASE_URL = "$Url/api/"

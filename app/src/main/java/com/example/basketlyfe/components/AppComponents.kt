@@ -25,6 +25,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.rounded.AccessTimeFilled
 import androidx.compose.material.icons.rounded.LocationOn
+import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FloatingActionButton
@@ -63,6 +64,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.basketlyfe.R
 import com.example.basketlyfe.model.CompetitionListModel
+import com.example.basketlyfe.model.LapanganListModel
+import com.example.basketlyfe.ui.ListScreen
 import com.example.basketlyfe.ui.theme.Prompt
 
 
@@ -99,6 +102,66 @@ fun CompetitionCard(
 
 
                 TextNormal(value = competition.address, textColor = Color.Black, modifier = Modifier)
+            }
+
+        }
+    }
+}
+
+@Composable
+fun LapanganCard(
+    lapangan: LapanganListModel,
+    navController: NavHostController
+) {
+    Card(
+        modifier = Modifier
+            .padding(top = 18.dp, bottom = 18.dp)
+            .fillMaxWidth()
+            .clickable {
+                navController.navigate(ListScreen.CreateSchedule.name)
+            },
+        shape = MaterialTheme.shapes.medium
+    ) {
+        Column {
+            Image(painter = painterResource(id = lapangan.image),
+                contentDescription = null, // Set a meaningful content description
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp), // Adjust the height as needed
+                contentScale = ContentScale.Crop
+            )
+            TextNormal(value = lapangan.name, textColor = Color.Black, modifier = Modifier.padding(10.dp))
+            Row {
+                Icon(
+                    Icons.Rounded.LocationOn, contentDescription = "Address",
+                    modifier = Modifier
+                        .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
+                TextNormal(value = lapangan.address, textColor = Color.Black, modifier = Modifier)
+            }
+//            Row {
+//                Icon(Icons.Rounded.AccessTimeFilled, contentDescription = "Clock",
+//                    modifier = Modifier
+//                        .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
+//
+//
+//                TextNormal(value = "22 December 2023", textColor = Color.Black, modifier = Modifier)
+//            }
+            Row {
+                Icon(
+                    Icons.Rounded.Star, contentDescription = "Rate", tint = Color.Yellow,
+                    modifier = Modifier
+                        .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
+//                Text(
+//                    text = lapangan.rate,
+//                    style = TextStyle(
+//                        fontSize = 14.sp,
+//                        fontWeight = FontWeight.Bold
+//                    ),
+//                    modifier = Modifier
+//                        .padding(top = 1.dp, start = 5.dp, bottom = 2.dp)
+//                        .fillMaxWidth()
+//                )
+                TextNormal(value = lapangan.rate, textColor = Color.Black, modifier = Modifier)
             }
 
         }
