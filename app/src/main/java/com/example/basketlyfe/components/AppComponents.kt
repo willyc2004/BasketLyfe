@@ -72,7 +72,7 @@ fun CompetitionCard(
 ) {
     Card(
         modifier = Modifier
-//            .padding(top = 18.dp, bottom = 18.dp)
+            .padding(top = 18.dp, bottom = 18.dp)
             .fillMaxWidth()
             .clickable {
                 navController.navigate("detail/${competition.id}")
@@ -80,7 +80,7 @@ fun CompetitionCard(
         shape = MaterialTheme.shapes.medium
     ) {
         Column {
-            Spacer(modifier = Modifier.height(18.dp))
+//            Spacer(modifier = Modifier.height(18.dp))
             Image(painter = painterResource(id = competition.image),
                 contentDescription = null, // Set a meaningful content description
                 modifier = Modifier
