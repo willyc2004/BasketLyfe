@@ -21,8 +21,10 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.basketlyfe.R
 import com.example.basketlyfe.components.EmailTextField
 import com.example.basketlyfe.components.ImageSmall
@@ -30,11 +32,16 @@ import com.example.basketlyfe.components.PasswordTextField
 import com.example.basketlyfe.components.TextBold
 import com.example.basketlyfe.components.TextExtraBold
 import com.example.basketlyfe.components.TextNormal
+import com.example.basketlyfe.data.DataStoreManager
 import com.example.basketlyfe.ui.theme.Prompt
 import com.example.basketlyfe.viewmodel.MasukViewModel
 
 @Composable
-fun Masuk(viewModel: MasukViewModel) {
+fun Masuk(
+    viewModel: MasukViewModel,
+    dataStore: DataStoreManager,
+    navController: NavController
+) {
 //    var email by rememberSaveable { mutableStateOf("") }
 //    var password by rememberSaveable { mutableStateOf("") }
 
@@ -109,7 +116,12 @@ fun Masuk(viewModel: MasukViewModel) {
 
             Button(
                 onClick = {
-                    viewModel.onLoginClicked()
+                    viewModel.onLoginClicked(
+                        email = viewModel.email,
+                        password = viewModel.password,
+                        dataStore = dataStore,
+                        navController = navController
+                    )
                 },
                 colors = ButtonDefaults.buttonColors(Color(0xFFED6C30)),
                 modifier = Modifier

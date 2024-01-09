@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -21,8 +24,12 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.basketlyfe.R
 import com.example.basketlyfe.components.ConfirmPasswordTextField
 import com.example.basketlyfe.components.EmailTextField
@@ -31,11 +38,16 @@ import com.example.basketlyfe.components.PasswordTextField
 import com.example.basketlyfe.components.TextBold
 import com.example.basketlyfe.components.TextExtraBold
 import com.example.basketlyfe.components.TextNormal
+import com.example.basketlyfe.data.DataStoreManager
 import com.example.basketlyfe.ui.theme.Prompt
 import com.example.basketlyfe.viewmodel.DaftarViewModel
 
 @Composable
-fun Daftar(viewModel: DaftarViewModel) {
+fun Daftar(
+    viewModel: DaftarViewModel,
+    navController: NavController,
+    dataStore: DataStoreManager
+) {
 
     Surface(
         color = Color.White,
@@ -57,6 +69,21 @@ fun Daftar(viewModel: DaftarViewModel) {
 
             ImageSmall(image = painterResource(id = R.drawable.logo))
 
+            TextBold(
+                value = "Name", textColor = Color(0xFFED6C30),
+                modifier = Modifier
+                    .align(Alignment.Start)
+                    .padding(start = 10.dp)
+                    .padding(top = 4.dp, bottom = 8.dp),
+            )
+
+            TextField(
+                value = viewModel.name,
+                onValueChange = viewModel::onNameChanged,
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+            )
+            
             TextBold(
                 value = "Email", textColor = Color(0xFFED6C30),
                 modifier = Modifier
@@ -136,7 +163,11 @@ fun Daftar(viewModel: DaftarViewModel) {
 
             Button(
                 onClick = {
-                    viewModel.registerUser()
+                    viewModel.registerUser(
+                        name = viewModel.name,
+                        email = viewModel.email,
+                        password = viewModel.password,
+                        dataStore = dataStore)
                 },
                 colors = ButtonDefaults.buttonColors(Color(0xFFED6C30)),
                 modifier = Modifier
@@ -176,10 +207,11 @@ fun Daftar(viewModel: DaftarViewModel) {
         }
     }
 }
-
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun DaftarPreview() {
-//    val navController = rememberNavController()
-//    Daftar(navController = navController)
-//}
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun DaftarPreview() {
+    val viewModel: DaftarViewModel = viewModel()
+    val navController = rememberNavController()
+    val dataStore = DataStoreManager(LocalContext.current)
+    Daftar(viewModel, navController, dataStore)
+}
