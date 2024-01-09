@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.rounded.AccessTimeFilled
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -90,6 +91,63 @@ fun CompetitionCard(
             )
 
             TextNormal(value = competition.name, textColor = Color.Black, modifier = Modifier.padding(10.dp))
+
+            Row {
+                Icon(Icons.Rounded.LocationOn, contentDescription = "Address",
+                    modifier = Modifier
+                        .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
+
+
+                TextNormal(value = competition.address, textColor = Color.Black, modifier = Modifier)
+            }
+
+        }
+    }
+}
+
+@Composable
+fun ScheduleCard(
+    competition: CompetitionListModel,
+    navController: NavHostController
+) {
+    Card(
+        modifier = Modifier
+            .padding(top = 18.dp, bottom = 18.dp)
+            .fillMaxWidth()
+            .clickable {
+                navController.navigate("detail/${competition.id}")
+            },
+        shape = MaterialTheme.shapes.medium
+    ) {
+        Column {
+//            Spacer(modifier = Modifier.height(18.dp))
+            Image(painter = painterResource(id = competition.image),
+                contentDescription = null, // Set a meaningful content description
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp), // Adjust the height as needed
+                contentScale = ContentScale.Crop
+            )
+
+            TextNormal(value = "Lapangan", textColor = Color.Black, modifier = Modifier.padding(10.dp))
+
+            Row {
+                Icon(Icons.Rounded.AccessTimeFilled, contentDescription = "Clock",
+                    modifier = Modifier
+                        .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
+
+
+                TextNormal(value = "22 December 2023", textColor = Color.Black, modifier = Modifier)
+            }
+
+            Row {
+                Icon(Icons.Rounded.AccessTimeFilled, contentDescription = "Clock",
+                    modifier = Modifier
+                        .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
+
+
+                TextNormal(value = "14.00-16.00", textColor = Color.Black, modifier = Modifier)
+            }
 
             Row {
                 Icon(Icons.Rounded.LocationOn, contentDescription = "Address",

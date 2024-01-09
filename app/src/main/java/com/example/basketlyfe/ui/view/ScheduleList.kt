@@ -31,7 +31,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
-import com.example.basketlyfe.components.CompetitionCard
+import com.example.basketlyfe.components.ScheduleCard
 import com.example.basketlyfe.components.TextExtraBold
 import com.example.basketlyfe.components.TextNormal
 import com.example.basketlyfe.model.CompetitionData
@@ -90,7 +90,7 @@ fun ScheduleListScreen() {
 //                        )
 
                         TextExtraBold(
-                            value = "List Kompetisi",
+                            value = "List Schedule",
                             textColor = Color(0xFF6D41A0),
                             modifier = Modifier
                         )
@@ -136,7 +136,7 @@ fun ScheduleListScreen() {
 
                     // Display the filtered list
                     itemsIndexed(items = filteredList) { _, item ->
-                        CompetitionCard(competition = item, navController = navController)
+                        ScheduleCard(competition = item, navController = navController)
                     }
                 }
             }
