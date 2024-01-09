@@ -44,7 +44,6 @@ fun CompetitionLScreen() {
     val competitionList = remember {
         CompetitionData.competitionList
     }
-    val ctx = LocalContext.current
     val navController = rememberNavController()
 
     var searchQuery by remember { mutableStateOf("") }
