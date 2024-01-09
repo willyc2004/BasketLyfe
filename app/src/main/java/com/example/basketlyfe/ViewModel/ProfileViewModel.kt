@@ -11,23 +11,36 @@ import com.example.basketlyfe.repositories.MyDBContainer
 import com.example.basketlyfe.ui.ListScreen
 import kotlinx.coroutines.launch
 
-class ProfileViewModel (private val navController: NavController): ViewModel(){
+class ProfileViewModel : ViewModel() {
 
     var email by mutableStateOf("")
     var name by mutableStateOf("")
 
-
-    fun updateUser() {}
-    fun logout(
-        navController: NavController,
-        dataStore: DataStoreManager
-    ) {
+    fun updateUser() {
         viewModelScope.launch {
-            MyDBContainer().myDBRepositories.logout()
-            dataStore.saveToken("")
-            MyDBContainer.ACCESS_TOKEN = ""
+            try {
+                // Make API call to get user data and update email, name
+                val response = MyDBContainer().myDBRepositories.getUserData()
+                // Update email and name based on the response
+                email = response.email
+                name = response.name
+            } catch (e: Exception) {
+                // Handle error (e.g., log or display a message)
+            }
+        }
+    }
 
-            navController.navigate(ListScreen.Masuk.name)
+    fun logout(dataStore: DataStoreManager, navController: NavController) {
+        viewModelScope.launch {
+            try {
+                MyDBContainer().myDBRepositories.logout()
+                dataStore.saveToken("")
+                MyDBContainer.ACCESS_TOKEN = ""
+                navController.navigate(ListScreen.Masuk.name)
+            } catch (e: Exception) {
+                // Handle error (e.g., log or display a message)
+            }
         }
     }
 }
+
