@@ -14,9 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
@@ -26,6 +29,8 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.rounded.AccessTimeFilled
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Star
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FloatingActionButton
@@ -68,23 +73,23 @@ import com.example.basketlyfe.model.LapanganListModel
 import com.example.basketlyfe.ui.ListScreen
 import com.example.basketlyfe.ui.theme.Prompt
 
-
 @Composable
 fun CompetitionCard(
     competition: CompetitionListModel,
     navController: NavHostController
 ) {
+    val showDialog = remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier
             .padding(top = 18.dp, bottom = 18.dp)
             .fillMaxWidth()
             .clickable {
-                navController.navigate("detail/${competition.id}")
+                showDialog.value = true
             },
         shape = MaterialTheme.shapes.medium
     ) {
         Column {
-//            Spacer(modifier = Modifier.height(18.dp))
             Image(painter = painterResource(id = competition.image),
                 contentDescription = null, // Set a meaningful content description
                 modifier = Modifier
@@ -92,21 +97,73 @@ fun CompetitionCard(
                     .height(200.dp), // Adjust the height as needed
                 contentScale = ContentScale.Crop
             )
-
-            TextNormal(value = competition.name, textColor = Color.Black, modifier = Modifier.padding(10.dp))
-
+            Text(
+                text = competition.name,
+                style = TextStyle(
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                ),
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+            )
             Row {
                 Icon(Icons.Rounded.LocationOn, contentDescription = "Address",
                     modifier = Modifier
                         .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
-
-
-                TextNormal(value = competition.address, textColor = Color.Black, modifier = Modifier)
+                Text(
+                    text = competition.address,
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier
+                        .padding(top = 1.dp, start = 5.dp, bottom = 2.dp)
+                        .fillMaxWidth()
+                )
             }
-
+            if (showDialog.value) {
+                AlertDialog(
+                    onDismissRequest = {
+                        // Set showDialog to false when the dialog is dismissed
+                        showDialog.value = false
+                    },
+                    title = {
+                        Text("${competition.name}")
+                    },
+                    text = {
+                        // Display competition details in the dialog
+                        LazyColumn (
+                            modifier = Modifier
+                                .verticalScroll(rememberScrollState())
+                                .height(300.dp)
+                        ){
+                            item { Text("${competition.description}") }
+                            item { Text("Start: ${competition.mulai}", modifier = Modifier.padding(top = 10.dp)) }
+                            item { Text("End: ${competition.selesai}") }
+                            item { Text("🗺️: ${competition.address}", modifier = Modifier.padding(top = 10.dp)) }
+                            item { Text("👤: ${competition.max_tim}") }
+                            item { Text("💵: ${competition.harga}") }
+                            item { Text("Rules:", modifier = Modifier.padding(top = 10.dp)) }
+                            item { Text("${competition.syarat}") }
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                // Dismiss the dialog when the confirm button is clicked
+                                showDialog.value = false
+                            }
+                        ) {
+                            Text(text = "Close")
+                        }
+                    }
+                )
+            }
         }
     }
 }
+
 
 @Composable
 fun LapanganCard(
