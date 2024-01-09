@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -167,7 +166,9 @@ fun Daftar(
                         name = viewModel.name,
                         email = viewModel.email,
                         password = viewModel.password,
-                        dataStore = dataStore)
+                        dataStore = dataStore,
+                        navController = navController
+                    )
                 },
                 colors = ButtonDefaults.buttonColors(Color(0xFFED6C30)),
                 modifier = Modifier

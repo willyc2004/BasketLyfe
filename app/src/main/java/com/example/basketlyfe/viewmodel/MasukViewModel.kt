@@ -37,37 +37,52 @@ class MasukViewModel (private val navController: NavController): ViewModel() {
             try {
                 val response = MyDBContainer().myDBRepositories.login(email, password)
 
-                if (response.message.equals("User Not Found", true)) {
-                    navController.navigate(ListScreen.Masuk.name)
-                } else if (response.message.equals("Incorrect Password", true)) {
-                    navController.navigate(ListScreen.Masuk.name)
-                } else {
-                    val data = response.data as List<*>
-                    Log.d("Login response", response.data.toString())
+                when {
+                    response.message.equals("User not found", true) ||
+                            response.message.equals("Incorrect Password", true) -> {
+                        navController.navigate(ListScreen.Masuk.name)
+                    }
+                    response.message.equals("Token Created", true) -> {
+                        if (response.data is List<*>) {
+                            val data = response.data as List<*>
+                            Log.d("Login response", response.data.toString())
 
-                    dataStore.saveToken(data[1] as String)
-                    dataStore.saveEmail(data[0] as String)
+                            if (data.size >= 2 && data[1] is String && data[0] is String) {
+                                dataStore.saveToken(data[0] as String)
+                                dataStore.saveEmail(data[1] as String)
 
-                    navController.navigate(ListScreen.MainScreen.name)
+                                navController.navigate(ListScreen.MainScreen.name)
 
-                    dataStore.getToken.collect{
-                        if (it != null) {
-                            MyDBContainer.EMAIL = it
+                                dataStore.getEmail.collect {
+                                    if (it != null) {
+                                        MyDBContainer.EMAIL = it
+                                        Log.d("Email", MyDBContainer.EMAIL)
+                                    }
+                                }
+
+                                dataStore.getToken.collect {
+                                    if (it != null) {
+                                        MyDBContainer.ACCESS_TOKEN = it
+                                        Log.d("Token", MyDBContainer.ACCESS_TOKEN)
+                                    }
+                                }
+                            } else {
+                                Log.d("Login Error", "Invalid data structure in response")
+                            }
+                        } else {
+                            Log.d("Login Error", "Unexpected data type in response")
                         }
                     }
-
-                    dataStore.getToken.collect{
-                        if (it != null) {
-                            MyDBContainer.ACCESS_TOKEN = it
-                        }
+                    else -> {
+                        Log.d("CekLogin", "MboAnehIki")
                     }
                 }
-
             } catch (e: Exception) {
                 Log.d("Login Error", e.message.toString())
                 navController.navigate(ListScreen.Masuk.name)
             }
         }
+
     }
 
     fun onDaftarClicked() {

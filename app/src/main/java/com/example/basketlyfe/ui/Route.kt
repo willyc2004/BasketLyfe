@@ -8,9 +8,11 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.basketlyfe.data.DataStoreManager
 import com.example.basketlyfe.ui.view.Daftar
 import com.example.basketlyfe.ui.view.FormSchedule
 import com.example.basketlyfe.ui.view.LoadingScreen
@@ -46,10 +48,10 @@ fun BasketLyfeRoute() {
                 LoadingScreen(viewModel = LoadingScreenViewModel(navController = navController))
             }
             composable(ListScreen.Masuk.name) {
-                Masuk(viewModel = MasukViewModel(navController = navController))
+                Masuk(viewModel = MasukViewModel(navController = navController), navController = navController, dataStore = DataStoreManager(context = LocalContext.current))
             }
             composable(ListScreen.Daftar.name) {
-                Daftar(viewModel = DaftarViewModel(navController = navController))
+                Daftar(viewModel = DaftarViewModel(navController = navController), navController = navController, dataStore = DataStoreManager(context = LocalContext.current))
             }
             composable(ListScreen.MainScreen.name) {
                 MainScreen()

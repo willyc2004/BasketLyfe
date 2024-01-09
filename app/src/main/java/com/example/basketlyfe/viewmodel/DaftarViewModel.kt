@@ -13,7 +13,6 @@ import com.example.basketlyfe.data.DataStoreManager
 import com.example.basketlyfe.model.User
 import com.example.basketlyfe.repositories.MyDBContainer
 import com.example.basketlyfe.ui.ListScreen
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class DaftarViewModel (private val navController: NavController): ViewModel(){
@@ -55,7 +54,8 @@ class DaftarViewModel (private val navController: NavController): ViewModel(){
         name: String,
         email: String,
         password: String,
-        dataStore: DataStoreManager
+        dataStore: DataStoreManager,
+        navController: NavController
     ) {
         if (validateForm()) {
             val user = User(
@@ -64,44 +64,63 @@ class DaftarViewModel (private val navController: NavController): ViewModel(){
                 password = password
             )
             viewModelScope.launch {
-                // Example: Call a repository function to register the user
                 try {
                     val response = MyDBContainer().myDBRepositories.register(user)
 
-                    val data = response.data as List<*>
-                    Log.d("register response", response.data.toString())
+                    when {
+                        response.message.equals("User already exists", true) -> {
+                            // Handle user already exists case
+                            Log.d("Register Error", "User already exists")
+                        }
+                        response.message.equals("User created", true) -> {
+                            if (response.data is List<*>) {
+                                val data = response.data as List<*>
+                                Log.d("register response", response.data.toString())
 
-                    dataStore.saveToken(data[1] as String)
-                    dataStore.saveEmail(data[0] as String)
+                                if (data.size >= 2 && data[1] is String && data[0] is String) {
+                                    dataStore.saveToken(data[0] as String)
+                                    dataStore.saveEmail(data[1] as String)
 
-                    dataStore.getEmail.collect{
-                        if (it != null) {
-                            MyDBContainer.EMAIL = it
+                                    navController.navigate(ListScreen.MainScreen.name)
+
+                                    dataStore.getEmail.collect {
+                                        if (it != null) {
+                                            MyDBContainer.EMAIL = it
+                                            Log.d("Email", MyDBContainer.EMAIL)
+                                        }
+                                    }
+
+                                    dataStore.getToken.collect {
+                                        if (it != null) {
+                                            MyDBContainer.ACCESS_TOKEN = it
+                                            Log.d("Token", MyDBContainer.ACCESS_TOKEN)
+                                        }
+                                    }
+
+                                    // TODO: Implement additional actions after successful registration
+
+//                                    navController.navigate(ListScreen.MainScreen.name)
+                                } else {
+                                    Log.d("Register Error", "Invalid data structure in response")
+                                }
+                            } else {
+                                Log.d("Register Error", "Unexpected data type in response")
+                            }
+                        }
+                        else -> {
+                            Log.d("Register Error", "Unexpected response: ${response.message}")
                         }
                     }
-                    Log.d("Email", MyDBContainer.EMAIL)
-
-                    dataStore.getToken.collect{
-                        if (it != null) {
-                            MyDBContainer.ACCESS_TOKEN = it
-                        }
-                    }
-                    Log.d("Token", MyDBContainer.ACCESS_TOKEN)
-
                 } catch (e: Exception) {
                     Log.d("Register Error", e.message.toString())
                 }
-
-                // TODO: Implement your registration logic here
-                navController.navigate(ListScreen.Masuk.name)
-
-                // After registration, you can perform additional actions if needed
             }
         } else {
             // Handle validation errors or show a message to the user
             navController.navigate(ListScreen.Daftar.name)
         }
     }
+
 
     private fun validateForm(): Boolean {
         return email.isNotEmpty() && password.isNotEmpty() && konfirmasi.isNotEmpty()

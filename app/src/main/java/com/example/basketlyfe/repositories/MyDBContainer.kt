@@ -10,10 +10,10 @@ class MyDBContainer() {
     companion object{
         var EMAIL = ""
         var ACCESS_TOKEN = ""
-        val Url = "https://21df-182-1-96-32.ngrok-free.app"
+        val Url = "https://0d34-182-1-96-32.ngrok-free.app"
     }
 
-    private val BASE_URL = "$Url/api"
+    private val BASE_URL = "$Url/api/"
 
     private val client = OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor(ACCESS_TOKEN))
