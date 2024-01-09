@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.basketlyfe.Model.LapanganListModel
+import com.example.basketlyfe.model.LapanganListModel
 
 @Composable
 fun LapanganCard(

@@ -2,21 +2,28 @@ package com.example.basketlyfe.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -25,9 +32,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -47,6 +57,246 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.basketlyfe.R
 import com.example.basketlyfe.ui.theme.Prompt
+
+
+@Composable
+fun ImageBorder(
+    imageResId: Int,
+    borderResId: Int,
+    size: Int,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .size(size.dp)
+            .clip(RoundedCornerShape(16.dp)) // Adjust the corner radius as needed
+    ) {
+//        // Border layer
+//        Box(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .clip(RoundedCornerShape(16.dp))
+//                .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
+//        )
+
+        // Image layer
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(4.dp)
+                .clip(RoundedCornerShape(16.dp)) // Match the corner radius used for the outer Box
+        ) {
+            Image(
+                painter = painterResource(id = imageResId),
+                contentDescription = null, // Provide a content description for accessibility
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+
+        // Border SVG
+        Image(
+            painter = painterResource(id = borderResId),
+            contentDescription = null, // Provide a content description for accessibility
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(16.dp)) // Match the corner radius used for the outer Box
+        )
+    }
+}
+
+@Composable
+fun Reminder(
+    title: String,
+    date: String,
+    start: String,
+    end: String
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+            .clip(RoundedCornerShape(8.dp)),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFF6D41A0)
+        )
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize(),
+//                .padding(2.dp),
+            verticalAlignment = Alignment.CenterVertically,
+//            horizontalArrangement = Arrangement.spacedBy(2.dp)
+        ) {
+            // Calendar Icon
+            Image(
+                painter = painterResource(id = R.drawable.reminder),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(100.dp).padding(vertical=8.dp)
+            )
+            Column {
+                // Title
+                TextLight(value = title, textColor = Color.White, modifier = Modifier, size = 16)
+
+                // Spacing
+                Spacer(modifier = Modifier.height(4.dp))
+
+                // Date and Time Row
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+//                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+//                    val formattedDate = "${date.month} ${date.day}"
+
+                    TextLight(
+                        value = date,
+                        textColor = Color.White,
+                        modifier = Modifier,
+                        size = 14
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+
+//                    Icon(imageVector = Icons.Outlined, contentDescription = null)
+                    Image(
+                        painter = painterResource(id = R.drawable.clock),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(20.dp)
+//                            .clip(RoundedCornerShape(8.dp))
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+
+                    TextLight(
+                        value = "$start - $end",
+                        textColor = Color.White,
+                        modifier = Modifier,
+                        size = 14
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun FAB(onClick: () -> Unit, size: Int) {
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(6.dp),
+        contentAlignment = Alignment.BottomEnd
+    ) {
+        FloatingActionButton(
+            onClick = onClick,
+            modifier = Modifier.size(size.dp),
+            containerColor = Color(0xFFED6C30)
+        ) {
+            Icon(imageVector = Icons.Default.Add, contentDescription = null, tint = Color.White)
+        }
+    }
+}
+@Composable
+fun TextField(value: String, placeHolder: String, onValueChange: (String) -> Unit){
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = Modifier.fillMaxWidth().height(55.dp),
+        placeholder = {
+            Text(
+                text = placeHolder,
+                color = Color.Black,
+                fontSize = 16.sp,
+                fontFamily = Prompt,
+                modifier = Modifier.padding(start = 2.dp)
+            )
+        },
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = Color(0xFFED6C30), // Orange outline color
+            unfocusedBorderColor = Color(0xFFED6C30), // Orange outline color
+//            textColor = Color.Black // Black text color
+        ),
+        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
+    )
+}
+@Composable
+fun Schedule(
+    name: String,
+    start: String,
+    end: String
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+            .clip(RoundedCornerShape(8.dp)),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFED6C30)
+        )
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize(),
+//                .padding(2.dp),
+            verticalAlignment = Alignment.CenterVertically,
+//            horizontalArrangement = Arrangement.spacedBy(2.dp)
+        ) {
+            // Calendar Icon
+            Image(
+                painter = painterResource(id = R.drawable.schedule),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(100.dp).padding(vertical=8.dp)
+            )
+            Column {
+                // Title
+                TextLight(value = "Booked by $name", textColor = Color.White, modifier = Modifier, size = 16)
+
+                // Spacing
+                Spacer(modifier = Modifier.height(4.dp))
+
+                // Date and Time Row
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+//                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+//                    val formattedDate = "${date.month} ${date.day}"
+
+//                    Icon(imageVector = Icons.Outlined, contentDescription = null)
+                    Image(
+                        painter = painterResource(id = R.drawable.clock),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(20.dp)
+//                            .clip(RoundedCornerShape(8.dp))
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+
+                    TextLight(
+                        value = "$start - $end",
+                        textColor = Color.White,
+                        modifier = Modifier,
+                        size = 14
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun BackIcon(
+    imageResId: Int,
+    onClick: () -> Unit,
+    modifier: Modifier
+) {
+    Icon(
+        painter = painterResource(id = imageResId),
+        contentDescription = null, // Content description for accessibility
+        modifier = modifier
+    )
+}
 
 @Composable
 fun TextExtraBold(value: String, textColor: Color, modifier: Modifier) {
@@ -80,6 +330,21 @@ fun TextBold(value: String, textColor: Color, modifier: Modifier) {
 }
 
 @Composable
+fun TextBoldMod(value: String, textColor: Color, modifier: Modifier, size: Int) {
+    Text(
+        text = value,
+        modifier = modifier,
+        style = TextStyle(
+            fontSize = size.sp,
+            lineHeight = 20.sp,
+            fontFamily = Prompt,
+            fontWeight = FontWeight.Bold,
+            color = textColor
+        )
+    )
+}
+
+@Composable
 fun TextNormal(value: String, textColor: Color, modifier: Modifier) {
     Text(
         text = value,
@@ -89,6 +354,21 @@ fun TextNormal(value: String, textColor: Color, modifier: Modifier) {
             lineHeight = 20.sp,
             fontFamily = Prompt,
             fontWeight = FontWeight.Normal,
+            color = textColor,
+        )
+    )
+}
+
+@Composable
+fun TextLight(value: String, textColor: Color, modifier: Modifier, size: Int) {
+    Text(
+        text = value,
+        modifier = modifier,
+        style = TextStyle(
+            fontSize = size.sp,
+            lineHeight = 20.sp,
+            fontFamily = Prompt,
+            fontWeight = FontWeight.Light,
             color = textColor,
         )
     )
@@ -160,9 +440,17 @@ fun EmailTextField(
             trailingIcon = {
                 if (email.isNotEmpty()) {
                     if (isValidEmail) {
-                        Icon(Icons.Default.Check, contentDescription = "Valid Email", tint = Color.Green)
+                        Icon(
+                            Icons.Default.Check,
+                            contentDescription = "Valid Email",
+                            tint = Color.Green
+                        )
                     } else {
-                        Icon(Icons.Default.Error, contentDescription = "Invalid Email", tint = Color.Red)
+                        Icon(
+                            Icons.Default.Error,
+                            contentDescription = "Invalid Email",
+                            tint = Color.Red
+                        )
                     }
                 }
             }
@@ -183,6 +471,7 @@ fun EmailTextField(
         }
     }
 }
+
 private fun isValidEmail(email: String): Boolean {
     val emailRegex = Regex("^\\S+@\\S+\\.\\S+\$")
     return emailRegex.matches(email)
@@ -223,7 +512,7 @@ fun PasswordTextField(
             onValueChange = onTextChanged,
             placeholder = {
 
-                Row () {
+                Row() {
                     Image(
                         painter = painterResource(id = R.drawable.password),
                         contentDescription = null,
@@ -346,7 +635,7 @@ fun ConfirmPasswordTextField(
             value = text,
             onValueChange = onTextChanged,
             placeholder = {
-                Row () {
+                Row() {
                     Image(
                         painter = painterResource(id = R.drawable.password),
                         contentDescription = null,
