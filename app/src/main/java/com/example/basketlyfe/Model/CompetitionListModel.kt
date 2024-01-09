@@ -5,5 +5,9 @@ data class CompetitionListModel(
     val name: String = "",
     val description: String = "",
     val image: Int = 0,
+    val max_tim: String = "",
+    val mulai: String = "",
+    val selesai: String = "",
+    val harga: String = "",
     val address : String = ""
 )

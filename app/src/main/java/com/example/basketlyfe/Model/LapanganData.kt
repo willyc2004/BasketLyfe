@@ -10,7 +10,10 @@ object LapanganData {
             rate = "4/5 dari 512 orang",
             image = R.drawable.p1,
             address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Amerika",
-            fasilitas = ""
+            price = "Rp75.000/jam",
+            fasilitas = "1. Lapangan Kayu" +
+                    "2. AC" +
+                    "3. Toilet"
         )
     val lapanganList = listOf(
         lapangan,
@@ -20,7 +23,10 @@ object LapanganData {
             rate = "3/5 dari 231 orang",
             image = R.drawable.p2,
             address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Malaysia",
-            fasilitas = ""
+            price = "Rp55.000/jam",
+            fasilitas = "1. Lapangan Karet" +
+                    "2. Kipas Angin" +
+                    "3. Toilet"
         ),
         LapanganListModel(
             id = 3,
@@ -28,7 +34,11 @@ object LapanganData {
             rate = "5/5 dari 833 orang",
             image = R.drawable.p3,
             address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,India",
-            fasilitas = ""
+            price = "Rp60.000/jam",
+            fasilitas = "1. Lapangan Beton" +
+                    "2. AC" +
+                    "3. Toilet" +
+                    "4. Kantin"
         ),
         LapanganListModel(
             id = 4,
@@ -36,7 +46,11 @@ object LapanganData {
             rate = "4.5/5 dari 97 orang",
             image = R.drawable.p4,
             address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Korea",
-            fasilitas = ""
+            price = "Rp80.000/jam",
+            fasilitas = "1. Lapangan Karet" +
+                    "2. Kipas Angin" +
+                    "3. Toilet" +
+                    "4. Kantin"
         ),
         LapanganListModel(
             id = 5,
@@ -44,7 +58,9 @@ object LapanganData {
             rate = "3.5/5 dari 201 orang",
             image = R.drawable.p5,
             address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Indonesia",
-            fasilitas = ""
+            price = "Rp100.000/jam",
+            fasilitas = "1. Lapangan Beton" +
+                    "2. Toilet"
         ),
         LapanganListModel(
             id = 6,
@@ -52,7 +68,10 @@ object LapanganData {
             rate = "4.7/5 dari 328 orang",
             image = R.drawable.p6,
             address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Indonesia",
-            fasilitas = ""
+            price = "Rp45.000/jam",
+            fasilitas = "1. Lapangan Kayu" +
+                    "2. AC" +
+                    "3. Toilet"
         )
     )
 }
