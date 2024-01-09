@@ -29,7 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
-import com.example.basketlyfe.Model.LapanganData
+import com.example.basketlyfe.model.LapanganData
 import com.example.basketlyfe.viewmodel.LapanganCard
 
 @OptIn(ExperimentalMaterial3Api::class)

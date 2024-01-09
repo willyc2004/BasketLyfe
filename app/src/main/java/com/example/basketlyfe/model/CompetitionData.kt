@@ -1,4 +1,4 @@
-package com.example.basketlyfe.Model
+package com.example.basketlyfe.model
 
 import com.example.basketlyfe.R
 

@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.basketlyfe.Model.CompetitionListModel
+import com.example.basketlyfe.model.CompetitionListModel
 
 @Composable
 fun CompetitionCard(

@@ -1,5 +1,6 @@
 package com.example.basketlyfe.ui.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -41,7 +42,7 @@ fun Masuk(viewModel: MasukViewModel) {
     Surface(
         color = Color.White,
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize().background(Color.White)
             .padding(24.dp),
     ) {
         Column(

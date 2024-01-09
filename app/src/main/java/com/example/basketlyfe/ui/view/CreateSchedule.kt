@@ -5,139 +5,108 @@ package com.example.basketlyfe.ui.view
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
-import com.maxkeppeler.sheets.calendar.CalendarDialog
-import com.maxkeppeler.sheets.calendar.models.CalendarConfig
-import com.maxkeppeler.sheets.calendar.models.CalendarSelection
-import com.maxkeppeler.sheets.calendar.models.CalendarStyle
-import com.maxkeppeler.sheets.date_time.DateTimeDialog
-import com.maxkeppeler.sheets.date_time.models.DateTimeSelection
-import com.maxkeppeler.sheets.option.OptionDialog
-import com.maxkeppeler.sheets.option.models.DisplayMode
-import com.maxkeppeler.sheets.option.models.Option
-import com.maxkeppeler.sheets.option.models.OptionConfig
-import com.maxkeppeler.sheets.option.models.OptionSelection
-import java.time.LocalDate
-import java.time.LocalTime
+import com.example.basketlyfe.R
+import com.example.basketlyfe.components.BackIcon
+import com.example.basketlyfe.components.CalendarApp
+import com.example.basketlyfe.components.FAB
+import com.example.basketlyfe.components.ImageBorder
+import com.example.basketlyfe.components.Reminder
+import com.example.basketlyfe.components.Schedule
+import com.example.basketlyfe.components.TextBoldMod
+import com.example.basketlyfe.components.TextNormal
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-internal fun CreateSchedule(navController: NavController) {
-    val selectedDate = remember { mutableStateOf<LocalDate?>(LocalDate.now()) }
-    val calendarState = rememberUseCaseState()
-    val weekCalendarState = rememberUseCaseState()
-    val selectedTime = remember { mutableStateOf<LocalTime?>(LocalTime.now()) }
-    val clockState = rememberUseCaseState()
-    val optionState = rememberUseCaseState()
-
-    CalendarDialog(
-        state = calendarState,
-        config = CalendarConfig(
-            yearSelection = true,
-            monthSelection = true,
-            style = CalendarStyle.MONTH
-        ),
-        selection = CalendarSelection.Date(
-            selectedDate = selectedDate.value
-        ) { newDate ->
-            selectedDate.value = newDate
-        },
-    )
-
-    CalendarDialog(
-        state = weekCalendarState,
-        config = CalendarConfig(
-            yearSelection = true,
-            monthSelection = true,
-            style = CalendarStyle.WEEK
-        ),
-        selection = CalendarSelection.Date(
-            selectedDate = selectedDate.value
-        ) { newDate ->
-            selectedDate.value = newDate
-        },
-    )
-
-
-    DateTimeDialog(
-        state = clockState,
-        selection = DateTimeSelection.Time (
-            selectedTime = selectedTime.value
-        ) {newTime ->
-            selectedTime.value = newTime
-        }
-    )
-
-    val options = listOf(
-        Option(
-            titleText = "2 Jam",
-            selected = true
-        ),
-        Option(
-            titleText = "4 Jam",
-//            disabled = true
-        ),
-        Option(
-            titleText = "6 Jam",
-//            details = OptionDetails(
-//                "Ananas comosus",
-//                "The pineapple is a tropical plant with an edible fruit; it is the most economically significant plant in the family Bromeliaceae."
-//            )
-        ),
-
-    )
-
-    OptionDialog(
-        state = optionState,
-        selection = OptionSelection.Single(options) { index, option ->
-            // Handle selection
-        },
-        config = OptionConfig(mode = DisplayMode.LIST)
-    )
-
-
-    Column(
+fun CreateSchedule(navController: NavController) {
+    Surface(
+        color = Color.White,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Color.White)
+            .padding(24.dp),
     ) {
-        Button(onClick = {
-            calendarState.show()
-        }) {
-            Text(text = "Month Date Picker")
-        }
-        Button(onClick = {
-            weekCalendarState.show()
-        }) {
-            Text(text = "Week Date Picker")
-        }
-        Button(onClick = {
-            clockState.show()
-        }) {
-            Text(text = "Time Picker")
-        }
-        Button(onClick = {
-            optionState.show()
-        }) {
-            Text(text = "Option Picker")
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            BackIcon(
+                imageResId = R.drawable.back,
+                onClick = {
+                    // Handle back icon click
+                },
+                Modifier
+                    .size(32.dp)
+                    .clickable { }
+                    .align(Alignment.Start)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp), // Adjust the padding as needed
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextBoldMod(value = "Nama Lapangan 1", textColor = Color(0xFF6D41A0), modifier = Modifier, size = 24)
+
+                ImageBorder(
+                    imageResId = R.drawable.lapangan,
+                    borderResId = R.drawable.border,
+                    size = 70,
+                    modifier = Modifier.background(Color.Transparent)
+                )
+            }
+
+            CalendarApp()
+            Spacer(modifier = Modifier.height(4.dp))
+            TextBoldMod(value = "Schedule", textColor = Color.Black, modifier = Modifier.align(Alignment.Start), size = 20)
+            Spacer(modifier = Modifier.height(16.dp))
+
+            //ini foreach ya
+            Schedule(
+                name = "Willy",
+                start = "14.00",
+                end = "16.00"
+            )
+
+            //slesai
+
+            Spacer(modifier = Modifier.height(16.dp))
+            TextBoldMod(value = "Reminder", textColor = Color.Black, modifier = Modifier.align(Alignment.Start), size = 20)
+            TextNormal(value = "Don't forget schedule for tomorrow", textColor = Color(0xFF94A3B8), modifier = Modifier.align(Alignment.Start))
+
+            Spacer(modifier = Modifier.height(16.dp))
+            Reminder(
+                title = "Booked Lapangan 1",
+                date = "December 22",
+                start = "12.00",
+                end = "14.00"
+            )
+
+            FAB(onClick = { /*TODO*/ }, size = 60)
         }
     }
 }

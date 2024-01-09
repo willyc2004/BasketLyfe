@@ -1,5 +1,6 @@
 package com.example.basketlyfe.ui.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,8 +22,10 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.example.basketlyfe.R
 import com.example.basketlyfe.components.ConfirmPasswordTextField
 import com.example.basketlyfe.components.EmailTextField
@@ -40,7 +43,7 @@ fun Daftar(viewModel: DaftarViewModel) {
     Surface(
         color = Color.White,
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize().background(Color.White)
             .padding(24.dp),
     ) {
         Column(
@@ -177,9 +180,9 @@ fun Daftar(viewModel: DaftarViewModel) {
     }
 }
 
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun DaftarPreview() {
-//    val navController = rememberNavController()
-//    Daftar(navController = navController)
-//}
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun DaftarPreview() {
+    val navController = rememberNavController()
+    Daftar(viewModel = DaftarViewModel(navController = navController))
+}

@@ -1,4 +1,4 @@
-package com.example.basketlyfe.Model
+package com.example.basketlyfe.model
 
 data class LapanganListModel(
     val id: Int = 0,
