@@ -89,7 +89,7 @@ fun CompetitionCard(
                 contentScale = ContentScale.Crop
             )
 
-            TextNormal(value = competition.name, textColor = Color.Black, modifier = Modifier)
+            TextNormal(value = competition.name, textColor = Color.Black, modifier = Modifier.padding(10.dp))
 
             Row {
                 Icon(Icons.Rounded.LocationOn, contentDescription = "Address",
