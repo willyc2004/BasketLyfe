@@ -1,10 +1,12 @@
 package com.example.basketlyfe.ui.view
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -27,6 +29,7 @@ import kotlinx.coroutines.launch
 
 // LoadingScreen.kt
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun LoadingScreen(viewModel: LoadingScreenViewModel) {
     val scope = rememberCoroutineScope()
@@ -42,33 +45,35 @@ fun LoadingScreen(viewModel: LoadingScreenViewModel) {
         }
     }
 
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    Scaffold {
+        Column (
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
 
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "image description",
-            contentScale = ContentScale.None
-        )
-
-        Text(
-            text = "BasketLyfe",
-            style = TextStyle(
-                fontSize = 40.sp,
-                lineHeight = 20.sp,
-                fontFamily = Prompt,
-                fontStyle = FontStyle.Normal,
-                fontWeight = FontWeight.Black,
-                color = Color(0xFFED6C30),
-                textAlign = TextAlign.Center,
-                letterSpacing = 2.sp
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "image description",
+                contentScale = ContentScale.None
             )
-        )
+
+            Text(
+                text = "BasketLyfe",
+                style = TextStyle(
+                    fontSize = 40.sp,
+                    lineHeight = 20.sp,
+                    fontFamily = Prompt,
+                    fontStyle = FontStyle.Normal,
+                    fontWeight = FontWeight.Black,
+                    color = Color(0xFFED6C30),
+                    textAlign = TextAlign.Center,
+                    letterSpacing = 2.sp
+                )
+            )
+        }
     }
 }
 
