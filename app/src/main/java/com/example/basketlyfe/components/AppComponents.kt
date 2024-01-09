@@ -197,7 +197,29 @@ fun FAB(onClick: () -> Unit, size: Int) {
         }
     }
 }
-
+@Composable
+fun TextField(value: String, placeHolder: String, onValueChange: (String) -> Unit){
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = Modifier.fillMaxWidth().height(55.dp),
+        placeholder = {
+            Text(
+                text = placeHolder,
+                color = Color.Black,
+                fontSize = 16.sp,
+                fontFamily = Prompt,
+                modifier = Modifier.padding(start = 2.dp)
+            )
+        },
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = Color(0xFFED6C30), // Orange outline color
+            unfocusedBorderColor = Color(0xFFED6C30), // Orange outline color
+//            textColor = Color.Black // Black text color
+        ),
+        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
+    )
+}
 @Composable
 fun Schedule(
     name: String,
