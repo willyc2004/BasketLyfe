@@ -6,5 +6,6 @@ data class LapanganListModel(
     val rate: String = "",
     val image: Int = 0,
     val address : String = "",
+    val price : String = "",
     val fasilitas : String = ""
 )
