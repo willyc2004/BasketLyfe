@@ -9,5 +9,6 @@ data class CompetitionListModel(
     val mulai: String = "",
     val selesai: String = "",
     val harga: String = "",
-    val address : String = ""
+    val address : String = "",
+    val syarat : String = ""
 )

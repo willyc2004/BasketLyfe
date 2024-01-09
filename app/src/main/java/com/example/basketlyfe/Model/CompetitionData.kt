@@ -14,6 +14,7 @@ object CompetitionData {
             mulai = "1 Januari 2024",
             selesai= "12 Januari 2024",
             harga= "Rp60.000",
+            syarat = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         )
     val competitionList = listOf(
         competition,
@@ -27,6 +28,7 @@ object CompetitionData {
             mulai = "7 Januari 2024",
             selesai= "29 Januari 2024",
             harga= "Rp80.000",
+            syarat = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         ),
         CompetitionListModel(
             id = 3,
@@ -38,6 +40,7 @@ object CompetitionData {
             mulai = "7 Februari 2024",
             selesai= "27 Februari 2024",
             harga= "Rp120.000",
+            syarat = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         ),
         CompetitionListModel(
             id = 4,
@@ -49,6 +52,7 @@ object CompetitionData {
             mulai = "8 Januari 2024",
             selesai= "15 Januari 2024",
             harga= "Rp90.000",
+            syarat = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         ),
         CompetitionListModel(
             id = 5,
@@ -60,6 +64,7 @@ object CompetitionData {
             mulai = "12 Januari 2024",
             selesai= "19 Januari 2024",
             harga= "Rp130.000",
+            syarat = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         ),
         CompetitionListModel(
             id = 6,
@@ -71,6 +76,7 @@ object CompetitionData {
             mulai = "13 Januari 2024",
             selesai= "19 Januari 2024",
             harga= "Rp60.000",
+            syarat = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         )
     )
 }
