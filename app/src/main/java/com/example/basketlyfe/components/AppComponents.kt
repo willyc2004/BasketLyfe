@@ -2,8 +2,10 @@ package com.example.basketlyfe.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,11 +23,13 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -55,10 +59,50 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.basketlyfe.R
+import com.example.basketlyfe.model.CompetitionListModel
 import com.example.basketlyfe.ui.theme.Prompt
 
 
+@Composable
+fun CompetitionCard(
+    competition: CompetitionListModel,
+    navController: NavHostController
+) {
+    Card(
+        modifier = Modifier
+//            .padding(top = 18.dp, bottom = 18.dp)
+            .fillMaxWidth()
+            .clickable {
+                navController.navigate("detail/${competition.id}")
+            },
+        shape = MaterialTheme.shapes.medium
+    ) {
+        Column {
+            Spacer(modifier = Modifier.height(18.dp))
+            Image(painter = painterResource(id = competition.image),
+                contentDescription = null, // Set a meaningful content description
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp), // Adjust the height as needed
+                contentScale = ContentScale.Crop
+            )
+
+            TextNormal(value = competition.name, textColor = Color.Black, modifier = Modifier)
+
+            Row {
+                Icon(Icons.Rounded.LocationOn, contentDescription = "Address",
+                    modifier = Modifier
+                        .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
+
+
+                TextNormal(value = competition.address, textColor = Color.Black, modifier = Modifier)
+            }
+
+        }
+    }
+}
 @Composable
 fun ImageBorder(
     imageResId: Int,
@@ -133,7 +177,8 @@ fun Reminder(
                 painter = painterResource(id = R.drawable.reminder),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(100.dp).padding(vertical=8.dp)
+                    .size(100.dp)
+                    .padding(vertical = 8.dp)
             )
             Column {
                 // Title
@@ -202,7 +247,9 @@ fun TextField(value: String, placeHolder: String, onValueChange: (String) -> Uni
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        modifier = Modifier.fillMaxWidth().height(55.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(55.dp),
         placeholder = {
             Text(
                 text = placeHolder,
@@ -247,7 +294,8 @@ fun Schedule(
                 painter = painterResource(id = R.drawable.schedule),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(100.dp).padding(vertical=8.dp)
+                    .size(100.dp)
+                    .padding(vertical = 8.dp)
             )
             Column {
                 // Title
