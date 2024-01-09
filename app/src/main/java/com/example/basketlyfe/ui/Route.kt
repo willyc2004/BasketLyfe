@@ -28,7 +28,8 @@ enum class ListScreen {
     Daftar,
     LoadingScreen,
     MainScreen,
-    FormSchedule
+    FormSchedule,
+    DetailCompetition
 }
 
 @RequiresApi(Build.VERSION_CODES.O)

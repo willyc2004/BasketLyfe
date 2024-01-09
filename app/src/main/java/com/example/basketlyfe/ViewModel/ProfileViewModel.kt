@@ -17,17 +17,17 @@ class ProfileViewModel : ViewModel() {
     var name by mutableStateOf("")
 
     fun updateUser() {
-        viewModelScope.launch {
-            try {
-                // Make API call to get user data and update email, name
-                val response = MyDBContainer().myDBRepositories.getUserData()
-                // Update email and name based on the response
-                email = response.email
-                name = response.name
-            } catch (e: Exception) {
-                // Handle error (e.g., log or display a message)
-            }
-        }
+//        viewModelScope.launch {
+//            try {
+//                // Make API call to get user data and update email, name
+//                val response = MyDBContainer().myDBRepositories.getUserData()
+//                // Update email and name based on the response
+//                email = response.email
+//                name = response.name
+//            } catch (e: Exception) {
+//                // Handle error (e.g., log or display a message)
+//            }
+//        }
     }
 
     fun logout(dataStore: DataStoreManager, navController: NavController) {
