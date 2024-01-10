@@ -6,11 +6,11 @@ object LapanganData {
     val lapangan =
         LapanganListModel(
             id = 1,
-            name = "Lapangan 1",
-            rate = "4/5 dari 512 orang",
+            name = "GOR CLS Kertajaya",
+            rate = "4.5/5 dari 512 orang",
             image = R.drawable.p1,
-            address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Amerika",
-            price = "Rp75.000/jam",
+            address = "GOR CLS Kertajaya, Kertajaya",
+            price = "Rp 500.000/jam",
             fasilitas = "1. Lapangan Kayu" +
                     "2. AC" +
                     "3. Toilet"
@@ -19,22 +19,22 @@ object LapanganData {
         lapangan,
         LapanganListModel(
             id = 2,
-            name = "Lapangan 2",
-            rate = "3/5 dari 231 orang",
+            name = "GOR GMC Cirebon",
+            rate = "4.2/5 dari 231 orang",
             image = R.drawable.p2,
-            address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Malaysia",
-            price = "Rp55.000/jam",
+            address = "GOR GMC Cirebon, Cirebon",
+            price = "Rp600.000/jam",
             fasilitas = "1. Lapangan Karet" +
                     "2. Kipas Angin" +
                     "3. Toilet"
         ),
         LapanganListModel(
             id = 3,
-            name = "Lapangan 3",
+            name = "NextGen Surabaya",
             rate = "5/5 dari 833 orang",
             image = R.drawable.p3,
-            address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,India",
-            price = "Rp60.000/jam",
+            address = "Ciputra World",
+            price = "Rp600.000/jam",
             fasilitas = "1. Lapangan Beton" +
                     "2. AC" +
                     "3. Toilet" +
@@ -42,11 +42,11 @@ object LapanganData {
         ),
         LapanganListModel(
             id = 4,
-            name = "Lapangan 4",
+            name = "Mayasi Surabaya",
             rate = "4.5/5 dari 97 orang",
             image = R.drawable.p4,
-            address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Korea",
-            price = "Rp80.000/jam",
+            address = "Jalan Kenjeran No 1-4",
+            price = "Rp700.000/jam",
             fasilitas = "1. Lapangan Karet" +
                     "2. Kipas Angin" +
                     "3. Toilet" +
@@ -54,21 +54,21 @@ object LapanganData {
         ),
         LapanganListModel(
             id = 5,
-            name = "Lapangan 5",
-            rate = "3.5/5 dari 201 orang",
+            name = "Bimasakti Malang",
+            rate = "4.5/5 dari 201 orang",
             image = R.drawable.p5,
-            address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Indonesia",
-            price = "Rp100.000/jam",
+            address = "Jalan Batu Night, Malang",
+            price = "Rp500.000/jam",
             fasilitas = "1. Lapangan Beton" +
                     "2. Toilet"
         ),
         LapanganListModel(
             id = 6,
-            name = "Lapangan 6",
+            name = "Bimasakti Batu",
             rate = "4.7/5 dari 328 orang",
             image = R.drawable.p6,
-            address = "Jalan Mejikuhibiniu No 1, 2-3 Sidoarjo,Indonesia",
-            price = "Rp45.000/jam",
+            address = "Jalan Hangry Kitten, Batu",
+            price = "Rp450.000/jam",
             fasilitas = "1. Lapangan Kayu" +
                     "2. AC" +
                     "3. Toilet"
