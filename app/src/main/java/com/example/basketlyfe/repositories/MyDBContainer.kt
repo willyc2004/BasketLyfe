@@ -8,11 +8,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MyDBContainer() {
 
     companion object{
-        val BASE_IMG = ""
+        var EMAIL = ""
         var ACCESS_TOKEN = ""
+        val Url = "https://6180-182-1-96-32.ngrok-free.app"
     }
 
-    private val BASE_URL = "http://127.0.0.1/BasketApi/public/api"
+    private val BASE_URL = "$Url/api/"
 
     private val client = OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor(ACCESS_TOKEN))

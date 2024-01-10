@@ -1,5 +1,6 @@
 package com.example.basketlyfe.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -7,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.basketlyfe.data.DataStoreManager
+import com.example.basketlyfe.model.User
 import com.example.basketlyfe.repositories.MyDBContainer
 import com.example.basketlyfe.ui.ListScreen
 import kotlinx.coroutines.launch
