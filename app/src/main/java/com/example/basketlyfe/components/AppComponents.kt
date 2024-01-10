@@ -237,9 +237,9 @@ fun LapanganCard(
                                 .verticalScroll(rememberScrollState())
                                 .height(300.dp)
                         ){
-                            item { Text("Rate : ${lapangan.rate}") }
-                            item { Text("Alamat: ${lapangan.address}", modifier = Modifier.padding(top = 10.dp)) }
-                            item { Text("Harga : ${lapangan.price} / 2 Jam") }
+                            item { Text("⭐: ${lapangan.rate}") }
+                            item { Text("🗺: ${lapangan.address}", modifier = Modifier.padding(top = 10.dp)) }
+                            item { Text("🎟: ${lapangan.price} / 2 Jam",modifier = Modifier.padding(top = 10.dp)) }
                             item { Text("Fasilitas: ${lapangan.fasilitas}", modifier = Modifier.padding(top = 10.dp)) }
                         }
                     },
@@ -328,9 +328,9 @@ fun ScheduleCard(
                                 .verticalScroll(rememberScrollState())
                                 .height(300.dp)
                         ){
-                            item { Text("Alamat : ${schedule.address}") }
-                            item { Text("Tanggal : ${schedule.date}", modifier = Modifier.padding(top = 10.dp)) }
-                            item { Text("Jam : ${schedule.time}") }
+                            item { Text("🗺: ${schedule.address}") }
+                            item { Text("📅: ${schedule.date}", modifier = Modifier.padding(top = 10.dp)) }
+                            item { Text("⏰: ${schedule.time}", modifier = Modifier.padding(top = 10.dp)) }
                         }
                     },
                     confirmButton = {
