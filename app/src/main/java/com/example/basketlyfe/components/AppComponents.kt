@@ -71,7 +71,6 @@ import com.example.basketlyfe.R
 import com.example.basketlyfe.model.CompetitionListModel
 import com.example.basketlyfe.model.LapanganListModel
 import com.example.basketlyfe.model.ScheduleListModel
-import com.example.basketlyfe.ui.ListScreen
 import com.example.basketlyfe.ui.theme.Prompt
 
 @Composable
@@ -171,12 +170,13 @@ fun LapanganCard(
     lapangan: LapanganListModel,
     navController: NavHostController
 ) {
+    val showDialog = remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
             .padding(top = 18.dp, bottom = 18.dp)
             .fillMaxWidth()
             .clickable {
-                navController.navigate(ListScreen.CreateSchedule.name)
+                showDialog.value = true
             },
         shape = MaterialTheme.shapes.medium
     ) {
@@ -221,7 +221,40 @@ fun LapanganCard(
 //                )
                 TextNormal(value = lapangan.rate, textColor = Color.Black, modifier = Modifier)
             }
-
+            if (showDialog.value) {
+                AlertDialog(
+                    onDismissRequest = {
+                        // Set showDialog to false when the dialog is dismissed
+                        showDialog.value = false
+                    },
+                    title = {
+                        Text("${lapangan.name}")
+                    },
+                    text = {
+                        // Display competition details in the dialog
+                        LazyColumn (
+                            modifier = Modifier
+                                .verticalScroll(rememberScrollState())
+                                .height(300.dp)
+                        ){
+                            item { Text("Rate : ${lapangan.rate}") }
+                            item { Text("Alamat: ${lapangan.address}", modifier = Modifier.padding(top = 10.dp)) }
+                            item { Text("Harga : ${lapangan.price} / 2 Jam") }
+                            item { Text("Fasilitas: ${lapangan.fasilitas}", modifier = Modifier.padding(top = 10.dp)) }
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                // Dismiss the dialog when the confirm button is clicked
+                                showDialog.value = false
+                            }
+                        ) {
+                            Text(text = "Close")
+                        }
+                    }
+                )
+            }
         }
     }
 }
@@ -231,12 +264,13 @@ fun ScheduleCard(
     schedule: ScheduleListModel,
     navController: NavHostController
 ) {
+    val showDialog = remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
             .padding(top = 18.dp, bottom = 18.dp)
             .fillMaxWidth()
             .clickable {
-//                navController.navigate("detail/${schedule.id}")
+                showDialog.value = true
             },
         shape = MaterialTheme.shapes.medium
     ) {
@@ -278,7 +312,39 @@ fun ScheduleCard(
 
                 TextNormal(value = schedule.address, textColor = Color.Black, modifier = Modifier)
             }
-
+            if (showDialog.value) {
+                AlertDialog(
+                    onDismissRequest = {
+                        // Set showDialog to false when the dialog is dismissed
+                        showDialog.value = false
+                    },
+                    title = {
+                        Text("${schedule.name}")
+                    },
+                    text = {
+                        // Display competition details in the dialog
+                        LazyColumn (
+                            modifier = Modifier
+                                .verticalScroll(rememberScrollState())
+                                .height(300.dp)
+                        ){
+                            item { Text("Alamat : ${schedule.address}") }
+                            item { Text("Tanggal : ${schedule.date}", modifier = Modifier.padding(top = 10.dp)) }
+                            item { Text("Jam : ${schedule.time}") }
+                        }
+                    },
+                    confirmButton = {
+                        Button(
+                            onClick = {
+                                // Dismiss the dialog when the confirm button is clicked
+                                showDialog.value = false
+                            }
+                        ) {
+                            Text(text = "Close")
+                        }
+                    }
+                )
+            }
         }
     }
 }
