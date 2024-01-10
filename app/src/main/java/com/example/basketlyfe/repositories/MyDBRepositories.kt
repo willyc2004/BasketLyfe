@@ -19,8 +19,7 @@ class MyDBRepositories(private val myDBService: MyDBService) {
         return myDBService.register(user)
     }
 
-    suspend fun update_user(user: User): User{
-        val result = myDBService.update_user(user)
-        return result
-    }
+//    suspend fun getUserData(): ApiResponse{
+//        return myDBService.getUserData(user)
+//    }
 }

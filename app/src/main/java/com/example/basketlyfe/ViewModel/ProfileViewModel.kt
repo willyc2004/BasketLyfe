@@ -18,22 +18,17 @@ class ProfileViewModel : ViewModel() {
     var email by mutableStateOf("")
     var name by mutableStateOf("")
 
-    fun updateUser(name: String, password: String, navController: NavController){
+    fun updateUser() {
         viewModelScope.launch {
             try {
-                val user = User(
-                    email = MyDBContainer.EMAIL,
-                    name = name,
-                    password = password
-                )
-
-                val result = MyDBContainer().myDBRepositories.update_user(user)
-                Log.d("SETTING SAVE SUCCESS", result.toString())
-
-            }catch (e: Exception){
-                Log.d("SETTING SAVE ERROR", e.message.toString())
+                // Make API call to get user data and update email, name
+                val response = MyDBContainer().myDBRepositories.getUserData()
+                // Update email and name based on the response
+                email = response.email
+                name = response.name
+            } catch (e: Exception) {
+                // Handle error (e.g., log or display a message)
             }
-
         }
     }
 
@@ -45,7 +40,7 @@ class ProfileViewModel : ViewModel() {
                 MyDBContainer.ACCESS_TOKEN = ""
                 navController.navigate(ListScreen.Masuk.name)
             } catch (e: Exception) {
-                Log.d("Error", e.message.toString())
+                // Handle error (e.g., log or display a message)
             }
         }
     }
