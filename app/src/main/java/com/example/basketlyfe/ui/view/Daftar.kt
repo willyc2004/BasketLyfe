@@ -233,3 +233,13 @@ fun DaftarPreview() {
     val dataStore = DataStoreManager(LocalContext.current)
     Daftar(viewModel, navController, dataStore)
 }
+
+@Composable
+fun DaftarScreen() {
+    val navController = rememberNavController()
+    Daftar(
+        viewModel = DaftarViewModel(navController = navController),
+        navController = navController,
+        dataStore = DataStoreManager(context = LocalContext.current)
+    )
+}

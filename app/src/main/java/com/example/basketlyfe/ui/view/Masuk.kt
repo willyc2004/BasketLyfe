@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -27,6 +28,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.basketlyfe.R
 import com.example.basketlyfe.components.EmailTextField
 import com.example.basketlyfe.components.ImageSmall
@@ -44,6 +46,7 @@ fun Masuk(
     viewModel: MasukViewModel,
     dataStore: DataStoreManager,
     navController: NavController
+
 ) {
 //    var email by rememberSaveable { mutableStateOf("") }
 //    var password by rememberSaveable { mutableStateOf("") }
@@ -51,7 +54,8 @@ fun Masuk(
         Surface(
             color = Color.White,
             modifier = Modifier
-                .fillMaxSize().background(Color.White)
+                .fillMaxSize()
+                .background(Color.White)
                 .padding(24.dp),
         ) {
             Column(
@@ -165,4 +169,15 @@ fun Masuk(
             }
         }
     }
+}
+
+@Composable
+fun MasukScreen() {
+    val navController = rememberNavController()
+    Masuk(
+        viewModel = MasukViewModel(navController = navController),
+        navController = navController,
+        dataStore = DataStoreManager(context = LocalContext.current),
+
+    )
 }
