@@ -34,22 +34,22 @@ import androidx.navigation.compose.rememberNavController
 import com.example.basketlyfe.components.ScheduleCard
 import com.example.basketlyfe.components.TextExtraBold
 import com.example.basketlyfe.components.TextNormal
-import com.example.basketlyfe.model.CompetitionData
+import com.example.basketlyfe.model.ScheduleData
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScheduleListScreen() {
 
-    val competitionList = remember {
-        CompetitionData.competitionList
+    val scheduleList = remember {
+        ScheduleData.schduleList
     }
     val ctx = LocalContext.current
     val navController = rememberNavController()
 
     var searchQuery by remember { mutableStateOf("") }
 
-    val filteredList = competitionList.filter {
+    val filteredList = scheduleList.filter {
         it.name.contains(searchQuery, ignoreCase = true)
     }
 
@@ -136,7 +136,7 @@ fun ScheduleListScreen() {
 
                     // Display the filtered list
                     itemsIndexed(items = filteredList) { _, item ->
-                        ScheduleCard(competition = item, navController = navController)
+                        ScheduleCard(schedule = item, navController = navController)
                     }
                 }
             }

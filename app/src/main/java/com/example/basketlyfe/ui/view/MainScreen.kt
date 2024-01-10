@@ -1,6 +1,8 @@
 package com.example.basketlyfe.ui.view
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -21,6 +23,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.basketlyfe.viewmodel.BottomNavGraph
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -39,6 +42,7 @@ fun BottomBar(navController: NavHostController){
         BottomBarScreen.Schedule,
         BottomBarScreen.CompetitionL,
         BottomBarScreen.Profile,
+        BottomBarScreen.CreateSchedule
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination

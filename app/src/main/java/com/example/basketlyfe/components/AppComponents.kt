@@ -70,6 +70,7 @@ import androidx.navigation.NavHostController
 import com.example.basketlyfe.R
 import com.example.basketlyfe.model.CompetitionListModel
 import com.example.basketlyfe.model.LapanganListModel
+import com.example.basketlyfe.model.ScheduleListModel
 import com.example.basketlyfe.ui.ListScreen
 import com.example.basketlyfe.ui.theme.Prompt
 
@@ -227,7 +228,7 @@ fun LapanganCard(
 
 @Composable
 fun ScheduleCard(
-    competition: CompetitionListModel,
+    schedule: ScheduleListModel,
     navController: NavHostController
 ) {
     Card(
@@ -235,13 +236,13 @@ fun ScheduleCard(
             .padding(top = 18.dp, bottom = 18.dp)
             .fillMaxWidth()
             .clickable {
-                navController.navigate("detail/${competition.id}")
+//                navController.navigate("detail/${schedule.id}")
             },
         shape = MaterialTheme.shapes.medium
     ) {
         Column {
 //            Spacer(modifier = Modifier.height(18.dp))
-            Image(painter = painterResource(id = competition.image),
+            Image(painter = painterResource(id = schedule.image),
                 contentDescription = null, // Set a meaningful content description
                 modifier = Modifier
                     .fillMaxWidth()
@@ -249,7 +250,7 @@ fun ScheduleCard(
                 contentScale = ContentScale.Crop
             )
 
-            TextNormal(value = "Lapangan", textColor = Color.Black, modifier = Modifier.padding(10.dp))
+            TextNormal(value = schedule.name, textColor = Color.Black, modifier = Modifier.padding(10.dp))
 
             Row {
                 Icon(Icons.Rounded.AccessTimeFilled, contentDescription = "Clock",
@@ -257,7 +258,7 @@ fun ScheduleCard(
                         .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
 
 
-                TextNormal(value = "22 December 2023", textColor = Color.Black, modifier = Modifier)
+                TextNormal(value = schedule.date, textColor = Color.Black, modifier = Modifier)
             }
 
             Row {
@@ -266,7 +267,7 @@ fun ScheduleCard(
                         .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
 
 
-                TextNormal(value = "14.00-16.00", textColor = Color.Black, modifier = Modifier)
+                TextNormal(value = schedule.time, textColor = Color.Black, modifier = Modifier)
             }
 
             Row {
@@ -275,7 +276,7 @@ fun ScheduleCard(
                         .padding(PaddingValues(start = 5.dp, bottom = 9.dp)))
 
 
-                TextNormal(value = competition.address, textColor = Color.Black, modifier = Modifier)
+                TextNormal(value = schedule.address, textColor = Color.Black, modifier = Modifier)
             }
 
         }
