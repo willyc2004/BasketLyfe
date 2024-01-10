@@ -26,10 +26,11 @@ import androidx.compose.ui.unit.dp
 import com.example.basketlyfe.R
 import com.example.basketlyfe.components.TextBoldMod
 import com.example.basketlyfe.components.TextExtraBold
+import com.example.basketlyfe.viewmodel.ProfileViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(provileViewModel: ProfileViewModel) {
     Scaffold {
         Surface(
             color = Color.White,
@@ -91,7 +92,7 @@ fun ProfileScreen() {
                 }
 
                 ProfileMenuItem("Ganti Nama") { }
-                ProfileMenuItem("Log Out") { }
+                ProfileMenuItem("Log Out") { provileViewModel.logout(datas) }
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.basketlyfe.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -7,28 +8,29 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.basketlyfe.data.DataStoreManager
+import com.example.basketlyfe.model.User
 import com.example.basketlyfe.repositories.MyDBContainer
 import com.example.basketlyfe.ui.ListScreen
 import kotlinx.coroutines.launch
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(private val navController: NavController) : ViewModel() {
 
-    var email by mutableStateOf("")
+    var email = MyDBContainer.EMAIL
     var name by mutableStateOf("")
 
-    fun updateUser() {
-        viewModelScope.launch {
-            try {
-                // Make API call to get user data and update email, name
+//    fun updateUser() {
+//        viewModelScope.launch {
+//            try {
+//                // Make API call to get user data and update email, name
 //                val response = MyDBContainer().myDBRepositories.getUserData()
-                // Update email and name based on the response
+//                // Update email and name based on the response
 //                email = response.email
 //                name = response.name
-            } catch (e: Exception) {
-                // Handle error (e.g., log or display a message)
-            }
-        }
-    }
+//            } catch (e: Exception) {
+//                // Handle error (e.g., log or display a message)
+//            }
+//        }
+//    }
 
     fun logout(dataStore: DataStoreManager, navController: NavController) {
         viewModelScope.launch {
