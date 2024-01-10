@@ -77,7 +77,7 @@ fun ProfileScreen(provileViewModel: ProfileViewModel) {
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
 
-                                TextBoldMod(value = "John Doe", textColor = Color.White, modifier = Modifier, size = 16)
+                                TextBoldMod(value = "Justin", textColor = Color.White, modifier = Modifier, size = 16)
                             }
                             Row(
                                 modifier = Modifier
@@ -85,7 +85,7 @@ fun ProfileScreen(provileViewModel: ProfileViewModel) {
                                     .padding(bottom = 8.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                TextBoldMod(value = "Email@gmail.com", textColor = Color.White, modifier = Modifier, size = 16)
+                                TextBoldMod(value = "Justin@gmail.com", textColor = Color.White, modifier = Modifier, size = 16)
                             }
                         }
                     }

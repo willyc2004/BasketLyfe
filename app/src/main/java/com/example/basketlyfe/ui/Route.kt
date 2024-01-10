@@ -24,6 +24,13 @@ import com.example.basketlyfe.viewmodel.FormScheduleViewModel
 import com.example.basketlyfe.viewmodel.LoadingScreenViewModel
 import com.example.basketlyfe.viewmodel.MasukViewModel
 
+enum class BottomBarScreen {
+    Home,
+    Profile,
+    CompetitionL,
+    Schedule
+}
+
 enum class ListScreen {
     Masuk,
     Daftar,

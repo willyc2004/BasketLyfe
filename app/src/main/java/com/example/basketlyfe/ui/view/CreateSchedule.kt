@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -49,7 +51,10 @@ fun CreateSchedule(navController: NavController) {
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .verticalScroll(
+                    rememberScrollState()
+                ),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             BackIcon(
@@ -71,7 +76,12 @@ fun CreateSchedule(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextBoldMod(value = "Nama Lapangan 1", textColor = Color(0xFF6D41A0), modifier = Modifier, size = 24)
+                TextBoldMod(
+                    value = "Nama Lapangan 1",
+                    textColor = Color(0xFF6D41A0),
+                    modifier = Modifier,
+                    size = 24
+                )
 
                 ImageBorder(
                     imageResId = R.drawable.lapangan,
@@ -83,7 +93,12 @@ fun CreateSchedule(navController: NavController) {
 
             CalendarApp()
             Spacer(modifier = Modifier.height(4.dp))
-            TextBoldMod(value = "Schedule", textColor = Color.Black, modifier = Modifier.align(Alignment.Start), size = 20)
+            TextBoldMod(
+                value = "Schedule",
+                textColor = Color.Black,
+                modifier = Modifier.align(Alignment.Start),
+                size = 20
+            )
             Spacer(modifier = Modifier.height(16.dp))
 
             //ini foreach ya
@@ -96,8 +111,17 @@ fun CreateSchedule(navController: NavController) {
             //slesai
 
             Spacer(modifier = Modifier.height(16.dp))
-            TextBoldMod(value = "Reminder", textColor = Color.Black, modifier = Modifier.align(Alignment.Start), size = 20)
-            TextNormal(value = "Don't forget schedule for tomorrow", textColor = Color(0xFF94A3B8), modifier = Modifier.align(Alignment.Start))
+            TextBoldMod(
+                value = "Reminder",
+                textColor = Color.Black,
+                modifier = Modifier.align(Alignment.Start),
+                size = 20
+            )
+            TextNormal(
+                value = "Don't forget schedule for tomorrow",
+                textColor = Color(0xFF94A3B8),
+                modifier = Modifier.align(Alignment.Start)
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
             Reminder(
@@ -107,7 +131,7 @@ fun CreateSchedule(navController: NavController) {
                 end = "14.00"
             )
 
-            FAB(onClick = { navController.navigate(ListScreen.FormSchedule.name)}, size = 60)
+            FAB(onClick = { navController.navigate(ListScreen.FormSchedule.name) }, size = 60)
         }
     }
 }

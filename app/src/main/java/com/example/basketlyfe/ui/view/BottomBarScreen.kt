@@ -13,6 +13,11 @@ sealed class BottomBarScreen (
     val title: String,
     val icon : ImageVector,
 ){
+    object CreateSchedule : BottomBarScreen(
+        route = "Create",
+        title = "Create",
+        icon = Icons.Default.DateRange
+    )
 
     object Profile : BottomBarScreen(
         route = "profile",
